@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EditChosenSpot#newInstance} factory method to
+ * Use the {@link RemoveChosenSpotFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EditChosenSpot extends Fragment {
+public class RemoveChosenSpotFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class EditChosenSpot extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EditChosenSpot() {
+    public RemoveChosenSpotFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +34,11 @@ public class EditChosenSpot extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EditChosenSpot.
+     * @return A new instance of fragment RemoveChosenSpotFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EditChosenSpot newInstance(String param1, String param2) {
-        EditChosenSpot fragment = new EditChosenSpot();
+    public static RemoveChosenSpotFragment newInstance(String param1, String param2) {
+        RemoveChosenSpotFragment fragment = new RemoveChosenSpotFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class EditChosenSpot extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_chosen_spot, container, false);
+        return inflater.inflate(R.layout.fragment_remove_chosen_spot, container, false);
     }
 }
