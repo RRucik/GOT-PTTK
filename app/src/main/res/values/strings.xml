@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GOTPTTK</string>
+    <string name="account">Informacje o koncie</string>
+    <string name="manage_spots">Zarządzaj punktami</string>
+    <string name="manage_sections">Zarządzaj odcinkami</string>
+    <string name="got_pttk">GOT PTTK</string>
+    <string name="menu_open">Otwórz menu</string>
+    <string name="menu_close">Zamknij menu</string>
+</resources>

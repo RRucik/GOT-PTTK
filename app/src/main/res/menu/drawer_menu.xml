@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_manage_spots"
+            android:icon="@drawable/ic_spot"
+            android:title="@string/manage_spots"
+            />
+        <item
+            android:id="@+id/nav_manage_sections"
+            android:icon="@drawable/ic_section"
+            android:title="@string/manage_sections"/>
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_account"
+            android:title="@string/account"/>
+    </group>
+
+</menu>
