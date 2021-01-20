@@ -21,7 +21,15 @@
             android:theme="@style/ToolbarTheme"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:elevation="4dp"/>
+            android:elevation="4dp">
+            
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                app:srcCompat="@drawable/ic_mountains" />
+        </androidx.appcompat.widget.Toolbar>
 
         <FrameLayout
             android:id="@+id/fragment_container"
