@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textViewStartingSpot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="60dp"
+        android:text="@string/starting_point_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEndingSpot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="60dp"
+        android:text="@string/ending_point_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextStartingSpot"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/editTextEndingSpot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStartingSpot" />
+
+    <EditText
+        android:id="@+id/editTextEndingSpot"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEndingSpot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextStartingSpot" />
+
+    <TextView
+        android:id="@+id/textViewMinLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="70dp"
+        android:text="@string/min_length_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartingSpot" />
+
+    <TextView
+        android:id="@+id/textViewMountainRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="65dp"
+        android:text="@string/mountain_range_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndingSpot" />
+
+    <EditText
+        android:id="@+id/editTextMinLength"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/editTextMountainRange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMinLength" />
+
+    <EditText
+        android:id="@+id/editTextMountainRange"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMountainRange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextMinLength" />
+
+    <TextView
+        android:id="@+id/textViewMinPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="60dp"
+        android:text="@string/min_points_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMinLength"/>
+
+    <EditText
+        android:id="@+id/editTextMinPoints"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/editTextActiveSince"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMinPoints" />
+
+    <TextView
+        android:id="@+id/textViewActiveSince"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="70dp"
+        android:text="@string/active_since_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMinLength"/>
+
+    <EditText
+        android:id="@+id/editTextActiveSince"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@+id/editTextMinPoints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMinPoints" />
+
+    <Button
+        android:id="@+id/buttonEditSearchSection"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/search_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextActiveSince" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="217dp"
+        android:background="@drawable/mountains_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/mountains_bottom_text" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="15dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditSearchSection" />
+
+    <ListView
+        android:id="@+id/listViewEditSpotSearch"
+        android:layout_width="413dp"
+        android:layout_height="223dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:text="@string/edit_section_data_text"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="32dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textViewStartingSpot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="60dp"
+        android:text="@string/starting_point_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <TextView
+        android:id="@+id/textViewEndingSpot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="60dp"
+        android:text="@string/ending_point_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <EditText
+        android:id="@+id/editTextStartingSpot"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/editTextEndingSpot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStartingSpot" />
+
+    <EditText
+        android:id="@+id/editTextEndingSpot"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEndingSpot"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextStartingSpot" />
+
+    <TextView
+        android:id="@+id/textViewLength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:text="@string/length_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStartingSpot" />
+
+    <TextView
+        android:id="@+id/textViewMountainRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="65dp"
+        android:text="@string/mountain_range_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEndingSpot" />
+
+    <EditText
+        android:id="@+id/editTextLength"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/editTextMountainRange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLength" />
+
+    <EditText
+        android:id="@+id/editTextMountainRange"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMountainRange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextLength" />
+
+    <TextView
+        android:id="@+id/textViewPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:text="@string/points_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLength"/>
+
+    <TextView
+        android:id="@+id/textViewReturnPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/reverse_points_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMountainRange"/>
+
+    <EditText
+        android:id="@+id/editTextPoints"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toStartOf="@+id/editTextReturnPoints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPoints" />
+
+    <EditText
+        android:id="@+id/editTextReturnPoints"
+        android:layout_width="180dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toEndOf="@+id/editTextPoints"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReturnPoints"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/description_text"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextReturnPoints"/>
+
+    <EditText
+        android:id="@+id/editTextSpotDesc"
+        android:layout_width="298dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/grey_edit_text"
+        android:ems="10"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
+
+    <Button
+        android:id="@+id/buttonEditSection"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/save_button_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSpotDesc" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="217dp"
+        android:background="@drawable/mountains_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/mountains_bottom_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

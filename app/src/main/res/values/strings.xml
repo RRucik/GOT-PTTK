@@ -24,4 +24,14 @@
     <string name="search_button_text">Szukaj</string>
     <string name="removed_spot_data_text">Dane usuwanego punktu</string>
     <string name="remove_button_text">Usuń</string>
+    <string name="starting_point_text">Punkt startowy</string>
+    <string name="ending_point_text">Punkt końcowy</string>
+    <string name="length_text">Długość</string>
+    <string name="mountain_range_text">Obszar górski</string>
+    <string name="points_text">Punktacja</string>
+    <string name="reverse_points_text">Punktacja w drugą stronę</string>
+    <string name="active_since_text">Aktywny od</string>
+    <string name="min_length_text">Min. długość</string>
+    <string name="min_points_text">Min. punktacja</string>
+    <string name="edit_section_data_text">Dane edytowanego odcinka</string>
 </resources>

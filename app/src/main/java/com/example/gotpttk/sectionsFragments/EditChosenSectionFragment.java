@@ -1,4 +1,4 @@
-package com.example.gotpttk.spotsFragments;
+package com.example.gotpttk.sectionsFragments;
 
 import android.os.Bundle;
 
@@ -10,12 +10,15 @@ import android.view.ViewGroup;
 
 import com.example.gotpttk.R;
 
-public class EditChosenSpotFragment extends Fragment
+
+public class EditChosenSectionFragment extends Fragment
 {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_chosen_spot, container, false);
+        return inflater.inflate(R.layout.fragment_edit_chosen_section, container, false);
     }
 }
