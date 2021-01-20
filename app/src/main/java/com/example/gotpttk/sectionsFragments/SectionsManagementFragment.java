@@ -43,7 +43,7 @@ public class SectionsManagementFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditSectionFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new RemoveSectionFragment()).commit();
             }
         });
         return view;

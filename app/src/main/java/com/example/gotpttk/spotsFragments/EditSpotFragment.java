@@ -25,6 +25,7 @@ public class EditSpotFragment extends Fragment
             @Override
             public void onClick(View view)
             {
+                // TU BEDZIE SEARCH PUNKTU
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditChosenSpotFragment()).commit();
             }
         });

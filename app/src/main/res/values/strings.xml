@@ -34,4 +34,5 @@
     <string name="min_length_text">Min. długość</string>
     <string name="min_points_text">Min. punktacja</string>
     <string name="edit_section_data_text">Dane edytowanego odcinka</string>
+    <string name="remove_section_data_text">Dane usuwanego odcinka</string>
 </resources>
