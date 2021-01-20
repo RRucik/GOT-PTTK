@@ -6,4 +6,8 @@
     <string name="got_pttk">GOT PTTK</string>
     <string name="menu_open">Otwórz menu</string>
     <string name="menu_close">Zamknij menu</string>
+    <string name="edit_point_button_text">Edytowanie punktów</string>
+    <string name="add_points_button_text">Dodawanie punktów</string>
+    <string name="delete_points_button_text">Usuwanie punktów</string>
+    <string name="choose_operation_text">Wybierz działanie</string>
 </resources>
