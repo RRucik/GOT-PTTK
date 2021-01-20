@@ -13,6 +13,10 @@
     <string name="add_sections_button_text">Dodawanie odcinków</string>
     <string name="edit_sections_button_text">Edytowanie odcinków</string>
     <string name="delete_sections_button_text">Usuwanie odcinków</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="spot_name_text">Nazwa punktu</string>
+    <string name="spot_height_text">Wysokość punktu</string>
+    <string name="description_text">Opis</string>
+    <string name="add_button_text">Dodaj</string>
+    <string name="mountains_bottom_text">Góry</string>
 </resources>
