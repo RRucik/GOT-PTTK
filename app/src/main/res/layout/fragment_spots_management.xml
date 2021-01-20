@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/buttonAddPoints"
+        android:id="@+id/buttonAddSpots"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -44,24 +44,24 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
-        android:id="@+id/buttonEditPoints"
+        android:id="@+id/buttonEditSpots"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/edit_point_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddPoints" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddSpots" />
 
     <Button
-        android:id="@+id/buttonDeletePoints"
+        android:id="@+id/buttonRemoveSpots"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/delete_points_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEditPoints" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonEditSpots" />
 
     <ImageView
         android:id="@+id/imageView"

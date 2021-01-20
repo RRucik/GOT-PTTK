@@ -1,4 +1,4 @@
-package com.example.gotpttk;
+package com.example.gotpttk.spotsFragments;
 
 import android.os.Bundle;
 
@@ -8,13 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SectionsManagementFragment extends Fragment
-{
+import com.example.gotpttk.R;
+
+public class EditSpotFragment extends Fragment {
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sections_management, container, false);
+        return inflater.inflate(R.layout.fragment_edit_spot, container, false);
     }
 }
