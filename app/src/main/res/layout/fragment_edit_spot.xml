@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="67dp"
         android:layout_marginTop="45dp"
-        android:text="Nazwa punktu"
+        android:text="@string/spot_height_text"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="61dp"
-        android:text="Wysokość punktu"
+        android:text="@string/spot_height_text"
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +63,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="162dp"
         android:layout_marginBottom="14dp"
-        android:text="Szukaj"
+        android:text="@string/search_button_text"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listViewEditSpotSearch" />
+        android:contentDescription="@string/mountains_bottom_text" />
 
     <ListView
         android:id="@+id/listViewEditSpotSearch"

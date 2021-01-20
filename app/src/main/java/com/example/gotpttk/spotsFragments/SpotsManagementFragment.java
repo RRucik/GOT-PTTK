@@ -13,19 +13,15 @@ import com.example.gotpttk.R;
 
 public class SpotsManagementFragment extends Fragment
 {
-    private Button addButton;
-    private Button editButton;
-    private Button removeButton;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_spots_management, container, false);
-        addButton = (Button) view.findViewById(R.id.buttonAddSpots);
-        editButton = (Button) view.findViewById(R.id.buttonEditSpots);
-        removeButton = (Button) view.findViewById(R.id.buttonRemoveSpots);
+        Button addButton = (Button) view.findViewById(R.id.buttonAddSpots);
+        Button editButton = (Button) view.findViewById(R.id.buttonEditSpots);
+        Button removeButton = (Button) view.findViewById(R.id.buttonRemoveSpots);
         addButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
