@@ -24,7 +24,7 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1dip"
         android:layout_marginTop="60dp"
         android:background="#000000"
@@ -37,11 +37,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginLeft="159dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
         android:text="Dodawanie punktów"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,11 +47,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginLeft="159dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
         android:text="Edytowanie punktów"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,11 +57,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginLeft="159dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginRight="159dp"
         android:text="Usuwanie punktów"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,9 +67,9 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="217dp"
+        android:background="@drawable/mountains_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/mountainsbottom" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
