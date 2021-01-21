@@ -21,7 +21,7 @@
         android:id="@+id/textViewSpotRowHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="32dp"
         android:text="@string/spot_height_text"
         android:textColor="@color/colorBlack"
@@ -32,12 +32,10 @@
         android:id="@+id/textViewSpotRowDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="34dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/description_text"
         android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toStartOf="@+id/textViewSpotRowDescValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSpotRowName" />
 
@@ -54,8 +52,8 @@
 
     <TextView
         android:id="@+id/textViewSpotRowDescValue"
-        android:layout_width="273dp"
-        android:layout_height="19dp"
+        android:layout_width="301dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="TextView"
@@ -75,4 +73,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewSpotRowHeight"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="20dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSpotRowDesc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
