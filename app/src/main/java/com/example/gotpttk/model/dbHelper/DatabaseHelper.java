@@ -145,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         List<Spot> spots = new ArrayList<Spot>();
         String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
-                + COLUMN_SPOT_NAME + " = " + spot_name + " AND "
+                + COLUMN_SPOT_NAME + " = '" + spot_name + "' AND "
                 + COLUMN_SPOT_HEIGHT + " = " + spot_height;
 
         SQLiteDatabase db = this.getReadableDatabase();
