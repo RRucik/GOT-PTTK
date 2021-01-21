@@ -38,8 +38,30 @@ public class EditSpotFragment extends Fragment
             @Override
             public void onClick(View viewInner)
             {
+                String name = etSpotNameFilter.getText().toString();
+                String height = etSpotHeightFilter.getText().toString();
+                Integer heightAsInt = null;
+                try
+                {
+                    // Repairing strings
+                    if (name.isEmpty())
+                    {
+                        name = null;
+                    }
+
+                    // Repairing integers
+                    if (!height.isEmpty())
+                    {
+                        heightAsInt = Integer.parseInt(height);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                }
+
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-                spots = databaseHelper.getAllSpots();
+                spots = databaseHelper.getFilteredSpots(name, heightAsInt);
                 if(spots.isEmpty()){
                     Toast.makeText(getContext(), "Brak punktów spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
