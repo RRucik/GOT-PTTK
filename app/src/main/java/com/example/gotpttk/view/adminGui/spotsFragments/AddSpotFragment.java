@@ -44,8 +44,6 @@ public class AddSpotFragment extends Fragment
                 String desc = etSpotDesc.getText().toString();
                 Integer heightAsInt = null;
 
-
-
                 try
                 {
                     // Repairing strings

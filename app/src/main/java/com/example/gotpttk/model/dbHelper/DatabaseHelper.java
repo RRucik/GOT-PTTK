@@ -90,6 +90,26 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return insert != -1;
     }
 
+    public boolean updateSpot(Spot spot)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SPOT_NAME, spot.getName());
+        values.put(COLUMN_SPOT_HEIGHT, spot.getHeight());
+        values.put(COLUMN_SPOT_DESC, spot.getDesc());
+
+        long update = db.update(TABLE_SPOT, values, COLUMN_SPOT_ID + " = ?",
+                new String[] { String.valueOf(spot.getIdSp())});
+        return update != -1;
+    }
+
+    public void deleteSpot(long spot_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
+                new String[] { String.valueOf(spot_id) });
+    }
+
     public List<Spot> getAllSpots()
     {
         List<Spot> spots = new ArrayList<Spot>();
