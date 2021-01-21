@@ -1,58 +1,58 @@
 package com.example.gotpttk.model.dbModels;
 
 public class Spot {
-    int IdSp;
-    String Name;
-    int Height;
-    String Desc;
+    Integer idSp;
+    String name;
+    Integer height;
+    String desc;
 
     public Spot(){
     }
 
-    public Spot(String Name, int Height, String Desc)
+    public Spot(String name, Integer height, String desc)
     {
-        this.Name = Name;
-        this.Height = Height;
-        this.Desc = Desc;
+        this.name = name;
+        this.height = height;
+        this.desc = desc;
     }
 
-    public Spot(int IdSp, String Name, int Height, String Desc)
+    public Spot(Integer idSp, String name, Integer height, String desc)
     {
-        this.IdSp = IdSp;
-        this.Name = Name;
-        this.Height = Height;
-        this.Desc = Desc;
+        this.idSp = idSp;
+        this.name = name;
+        this.height = height;
+        this.desc = desc;
     }
 
-    public int getIdSp() {
-        return IdSp;
+    public Integer getIdSp() {
+        return idSp;
     }
 
-    public void setIdSp(int idSp) {
-        IdSp = idSp;
+    public void setIdSp(Integer idSp) {
+        this.idSp = idSp;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public int getHeight() {
-        return Height;
+    public Integer getHeight() {
+        return height;
     }
 
-    public void setHeight(int height) {
-        Height = height;
+    public void setHeight(Integer height) {
+        this.height = height;
     }
 
     public String getDesc() {
-        return Desc;
+        return desc;
     }
 
     public void setDesc(String desc) {
-        Desc = desc;
+        this.desc = desc;
     }
 }

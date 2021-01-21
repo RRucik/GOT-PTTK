@@ -42,21 +42,42 @@ public class AddSpotFragment extends Fragment
                 String name = etSpotName.getText().toString();
                 String height = etSpotHeight.getText().toString();
                 String desc = etSpotDesc.getText().toString();
+                Integer heightAsInt = null;
 
-                if (name.isEmpty())
-                {
-                    name = null;
-                }
+
+
                 try
                 {
-                    spot = new Spot(name, Integer.parseInt(height), desc);
+                    // Repairing strings
+                    if (name.isEmpty())
+                    {
+                        name = null;
+                    }
+                    if (desc.isEmpty())
+                    {
+                        desc = null;
+                    }
+                    // Repairing integers
+                    if (!height.isEmpty())
+                    {
+                        heightAsInt = Integer.parseInt(height);
+                    }
+
+                    spot = new Spot(name, heightAsInt, desc);
                     DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                     boolean success = databaseHelper.createSpot(spot);
-                    Toast.makeText(view.getContext(), "Success " + success, Toast.LENGTH_SHORT).show();
+                    if (success)
+                    {
+                        Toast.makeText(view.getContext(), "Punkt pomyślnie dodany", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(view.getContext(), "Nie można dodać punktu - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(view.getContext(), "Nie można dodać punktu o podanych danych", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
                 }
             }
         });
