@@ -9,9 +9,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.gotpttk.accountFragments.AccountDetailsFragment;
-import com.example.gotpttk.sectionsFragments.SectionsManagementFragment;
-import com.example.gotpttk.spotsFragments.SpotsManagementFragment;
+import com.example.gotpttk.view.adminGui.accountFragments.AccountDetailsFragment;
+import com.example.gotpttk.view.adminGui.sectionsFragments.SectionsManagementFragment;
+import com.example.gotpttk.view.adminGui.spotsFragments.SpotsManagementFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener

@@ -1,4 +1,4 @@
-package com.example.gotpttk.sectionsFragments;
+package com.example.gotpttk.view.adminGui.sectionsFragments;
 
 import android.os.Bundle;
 
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.gotpttk.R;
-import com.example.gotpttk.spotsFragments.EditChosenSpotFragment;
 
 public class EditSectionFragment extends Fragment
 {

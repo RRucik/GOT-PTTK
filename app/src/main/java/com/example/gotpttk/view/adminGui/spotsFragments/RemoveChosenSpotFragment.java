@@ -1,4 +1,4 @@
-package com.example.gotpttk.spotsFragments;
+package com.example.gotpttk.view.adminGui.spotsFragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;

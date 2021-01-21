@@ -1,4 +1,4 @@
-package com.example.gotpttk.sectionsFragments;
+package com.example.gotpttk.view.adminGui.sectionsFragments;
 
 import android.os.Bundle;
 
