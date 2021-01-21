@@ -21,6 +21,7 @@ public class EditChosenSpotFragment extends Fragment
     EditText etEditSpotName;
     EditText etEditSpotHeight;
     EditText etEditSpotDesc;
+    long SpotId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,10 +29,16 @@ public class EditChosenSpotFragment extends Fragment
     {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_chosen_spot, container, false);
+        SpotId = getArguments().getLong("id");
+        DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
+        Spot current = databaseHelper.getSpot(SpotId);
         btnSaveSpotChanges = (Button) view.findViewById(R.id.buttonEditSpot);
         etEditSpotName = view.findViewById(R.id.editTextEditSpotName);
+        etEditSpotName.setText(current.getName());
         etEditSpotHeight = view.findViewById(R.id.editTextEditSpotHeight);
+        etEditSpotHeight.setText(Integer.toString(current.getHeight()));
         etEditSpotDesc = view.findViewById(R.id.editTextEditSpotDesc);
+        etEditSpotDesc.setText(current.getDesc());
         btnSaveSpotChanges.setOnClickListener(new View.OnClickListener()
         {
             @Override

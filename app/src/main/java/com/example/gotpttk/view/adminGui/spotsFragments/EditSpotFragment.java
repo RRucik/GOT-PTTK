@@ -109,7 +109,7 @@ public class EditSpotFragment extends Fragment
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             Bundle passId = new Bundle();
-                            passId.putInt("id", (int)id);
+                            passId.putLong("id", (int)id);
                             EditChosenSpotFragment fragment = new EditChosenSpotFragment();
                             fragment.setArguments(passId);
                             getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
