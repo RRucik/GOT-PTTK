@@ -10,7 +10,15 @@ public class Spot {
 
     }
 
-    public Spot(int IdSp, String Name, int Height, String Desc){
+    public Spot(String Name, int Height, String Desc)
+    {
+        this.Name = Name;
+        this.Height = Height;
+        this.Desc = Desc;
+    }
+
+    public Spot(int IdSp, String Name, int Height, String Desc)
+    {
         this.IdSp = IdSp;
         this.Name = Name;
         this.Height = Height;

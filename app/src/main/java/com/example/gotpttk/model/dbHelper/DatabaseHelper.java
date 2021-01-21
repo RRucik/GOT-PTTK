@@ -88,10 +88,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_SPOT_ID, spot.getIdSp());
         values.put(COLUMN_SPOT_NAME, spot.getName());
         values.put(COLUMN_SPOT_HEIGHT, spot.getHeight());
-        values.put(COLUMN_SPOT_DESC, spot.getIdSp());
+        values.put(COLUMN_SPOT_DESC, spot.getDesc());
 
         long insert = db.insert(TABLE_SPOT, null, values);
         return insert != -1;
@@ -111,8 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             do
             {
                 Spot spot = new Spot();
-                spot.setIdSp(c.getInt((c.getColumnIndex(COLUMN_SPOT_ID))));
-                spot.setName((c.getString(c.getColumnIndex(COLUMN_SPOT_NAME))));
+                spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
                 spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
                 spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
 
@@ -120,5 +118,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
             } while (c.moveToNext());
         }
         return spots;
+    }
+
+    public void closeDB()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
     }
 }

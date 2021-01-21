@@ -28,20 +28,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextSpotNameOne"
+        android:id="@+id/editTextSpotName"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
         android:background="@color/grey_edit_text"
         android:ems="10"
         android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toStartOf="@+id/editTextSpotNameTwo"
+        app:layout_constraintEnd_toStartOf="@+id/editTextSpotHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSpotName"
         />
 
     <EditText
-        android:id="@+id/editTextSpotNameTwo"
+        android:id="@+id/editTextSpotHeight"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
@@ -50,7 +50,7 @@
         android:textColor="@color/colorBlack"
         app:layout_constraintTop_toBottomOf="@+id/textViewSpotHeight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextSpotNameOne" />
+        app:layout_constraintStart_toEndOf="@+id/editTextSpotName" />
 
     <TextView
         android:id="@+id/textViewDesc"
@@ -61,7 +61,7 @@
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSpotNameOne"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextSpotName"/>
 
     <EditText
         android:id="@+id/editTextSpotDesc"
@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
 
     <Button
-        android:id="@+id/buttonAddPoint"
+        android:id="@+id/buttonAddSpot"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -85,16 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextSpotDesc" />
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:layout_marginTop="32dp"
-        android:background="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddPoint" />
 
     <ImageView
         android:id="@+id/imageView"
