@@ -1,4 +1,4 @@
-package com.example.gotpttk.model;
+package com.example.gotpttk.model.dbModels;
 
 public class Spot {
     int IdSp;
