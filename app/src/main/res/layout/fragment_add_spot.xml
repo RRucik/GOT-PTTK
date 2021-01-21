@@ -66,7 +66,7 @@
     <EditText
         android:id="@+id/editTextSpotDesc"
         android:layout_width="298dp"
-        android:layout_height="79dp"
+        android:layout_height="31dp"
         android:layout_marginTop="15dp"
         android:background="@color/grey_edit_text"
         android:ems="10"
