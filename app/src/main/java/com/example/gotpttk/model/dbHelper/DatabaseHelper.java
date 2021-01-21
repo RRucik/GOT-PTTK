@@ -22,7 +22,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
     // Table Names
     private static final String TABLE_SPOT = "Punkt";
     private static final String TABLE_SECTION = "Odcinek";
-    private static final String TABLE_MOUNTAIN_RANGE = "Obszar_gorski";
 
     // SPOTS Table - column names
     private static final String COLUMN_SPOT_ID = "id_p";
@@ -34,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COLUMN_SECTION_ID = "id_o";
     private static final String COLUMN_SECTION_START_SPOT_ID = "punkt_pocz_id_p";
     private static final String COLUMN_SECTION_END_SPOT_ID = "punkt_konc_id_k";
+    private static final String COLUMN_SECTION_MOUTAIN_RANGE = "pasmo_gorskie";
     private static final String COLUMN_SECTION_LENGTH = "dlugosc";
     private static final String COLUMN_SECTION_POINTS = "punktacja";
     private static final String COLUMN_SECTION_RETURN_POINTS = "punktacja_w_druga_strone";
@@ -43,16 +43,29 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
     // CREATE TABLE SPOT statement
-    private static final String CREATE_TABLE_SPOT = "CREATE TABLE " + TABLE_SPOT
-            + "(" + COLUMN_SPOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_SPOT_NAME + "" +
-            " TEXT NOT NULL," + COLUMN_SPOT_HEIGHT + " INTEGER," + COLUMN_SPOT_DESC + " TEXT" + ")";
+    private static final String CREATE_TABLE_SPOT = "CREATE TABLE "
+            + TABLE_SPOT + "("
+            + COLUMN_SPOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_SPOT_NAME + " TEXT NOT NULL,"
+            + COLUMN_SPOT_HEIGHT + " INTEGER,"
+            + COLUMN_SPOT_DESC + " TEXT)";
 
     // CREATE TABLE SECTION statement
-    private static final String CREATE_TABLE_SECTION = "";
-
-    // CREATE TABLE MOUNTAIN_RANGE statement
-
-    private static final String CREATE_TABLE_MOUNTAIN_RANGE = "";
+    private static final String CREATE_TABLE_SECTION = "CREATE TABLE "
+            + TABLE_SECTION + "("
+            + COLUMN_SECTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_SECTION_START_SPOT_ID + " INTEGER NOT NULL,"
+            + COLUMN_SECTION_END_SPOT_ID + " INTEGER NOT NULL,"
+            + COLUMN_SECTION_MOUTAIN_RANGE + " TEXT NOT NULL,"
+            + COLUMN_SECTION_LENGTH + " INTEGER NOT NULL,"
+            + COLUMN_SECTION_POINTS + " INTEGER NOT NULL,"
+            + COLUMN_SECTION_RETURN_POINTS + " INTEGER,"
+            + COLUMN_SECTION_HEIGHT_DIFF + " INTEGER NOT NULL,"
+            + COLUMN_SECTION_ACTIVE_SINCE + " TEXT NOT NULL,"
+            + COLUMN_SPOT_DESC + " TEXT,"
+            + COLUMN_SECTION_OPEN + " INTEGER NOT NULL,"
+            + " FOREIGN KEY ("+COLUMN_SECTION_START_SPOT_ID+") REFERENCES "+TABLE_SPOT+"("+COLUMN_SPOT_ID+"),"
+            + " FOREIGN KEY ("+COLUMN_SECTION_END_SPOT_ID+") REFERENCES "+TABLE_SPOT+"("+COLUMN_SPOT_ID+"));";
 
     public DatabaseHelper(Context context)
     {
@@ -64,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         // Creating tables
         db.execSQL(CREATE_TABLE_SPOT);
-//        db.execSQL(CREATE_TABLE_SECTION);
+        db.execSQL(CREATE_TABLE_SECTION);
     }
 
     @Override
@@ -72,8 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         // Dropping and creating tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SPOT);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SECTION);
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOUNTAIN_RANGE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SECTION);
 
         onCreate(db);
     }
@@ -128,6 +140,33 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         return spot;
     }
+
+    public List<Spot> getFilteredSpots(String spot_name, Integer spot_height)
+    {
+        List<Spot> spots = new ArrayList<Spot>();
+        String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
+                + COLUMN_SPOT_NAME + " = " + spot_name + " AND "
+                + COLUMN_SPOT_HEIGHT + " = " + spot_height;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst())
+        {
+            do
+            {
+                Spot spot = new Spot();
+                spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
+                spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
+                spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
+                spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
+                spots.add(spot);
+            } while (c.moveToNext());
+        }
+        return spots;
+    }
+
 
     public List<Spot> getAllSpots()
     {
