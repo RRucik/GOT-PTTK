@@ -1,111 +1,108 @@
 package com.example.gotpttk.model.dbModels;
 
-import java.util.Date;
-
 public class Section {
-    int IdSe;
-    int IdSpStart;
-    int IdSpEnd;
-    int Length;
-    int PointsTo;
-    int PointsFrom;
-    int HeightDiff;
-    String ActiveFrom;
-    String Desc;
-    Boolean Open;
+    Integer idSe;
+    Integer idSpStart;
+    Integer idSpEnd;
+    Integer length;
+    Integer pointsTo;
+    Integer pointsFrom;
+    Integer heightDiff;
+    String activeFrom;
+    String desc;
+    Boolean open;
 
-    public Section(){
+    public Section()
+    {}
 
-    }
-
-    public Section(int idSe, int idMAFK, int idSpStart, int idSpEnd, int length, int pointsTo, int pointsFrom, String desc) {
-        IdSe = idSe;
-        IdSpStart = idSpStart;
-        IdSpEnd = idSpEnd;
-        Length = length;
-        PointsTo = pointsTo;
-        PointsFrom = pointsFrom;
-        Desc = desc;
-        this.Open = true;
+    public Section(Integer idSe, Integer idSpStart, Integer idSpEnd, Integer length, Integer pointsTo, Integer pointsFrom, String desc) {
+        this.idSe = idSe;
+        this.idSpStart = idSpStart;
+        this.idSpEnd = idSpEnd;
+        this.length = length;
+        this.pointsTo = pointsTo;
+        this.pointsFrom = pointsFrom;
+        this.desc = desc;
+        this.open = true;
     }
 
     public int getIdSe() {
-        return IdSe;
+        return idSe;
     }
 
     public void setIdSe(int idSe) {
-        IdSe = idSe;
+        this.idSe = idSe;
     }
 
     public int getIdSpStart() {
-        return IdSpStart;
+        return idSpStart;
     }
 
     public void setIdSpStart(int idSpStart) {
-        IdSpStart = idSpStart;
+        this.idSpStart = idSpStart;
     }
 
     public int getIdSpEnd() {
-        return IdSpEnd;
+        return idSpEnd;
     }
 
     public void setIdSpEnd(int idSpEnd) {
-        IdSpEnd = idSpEnd;
+        this.idSpEnd = idSpEnd;
     }
 
     public int getLength() {
-        return Length;
+        return length;
     }
 
     public void setLength(int length) {
-        Length = length;
+        this.length = length;
     }
 
     public int getPointsTo() {
-        return PointsTo;
+        return pointsTo;
     }
 
     public void setPointsTo(int pointsTo) {
-        PointsTo = pointsTo;
+        this.pointsTo = pointsTo;
     }
 
     public int getPointsFrom() {
-        return PointsFrom;
+        return pointsFrom;
     }
 
     public void setPointsFrom(int pointsFrom) {
-        PointsFrom = pointsFrom;
+        this.pointsFrom = pointsFrom;
     }
 
     public int getHeightDiff() {
-        return HeightDiff;
+        return heightDiff;
     }
 
     public void setHeightDiff(int heightDiff) {
-        HeightDiff = heightDiff;
+        this.heightDiff = heightDiff;
     }
 
     public String getActiveFrom() {
-        return ActiveFrom;
+        return activeFrom;
     }
 
     public void setActiveFrom(String activeFrom) {
-        ActiveFrom = activeFrom;
+        this.activeFrom = activeFrom;
     }
 
     public String getDesc() {
-        return Desc;
+        return desc;
     }
 
     public void setDesc(String desc) {
-        Desc = desc;
+        this.desc = desc;
     }
 
     public Boolean getOpen() {
-        return Open;
+        return open;
     }
 
     public void setOpen(Boolean open) {
-        Open = open;
+        this.open = open;
     }
 }
