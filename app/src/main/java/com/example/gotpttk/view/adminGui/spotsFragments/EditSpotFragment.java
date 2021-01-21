@@ -28,7 +28,6 @@ public class EditSpotFragment extends Fragment
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,
                              Bundle savedInstanceState)
     {
-
         final View view = inflater.inflate(R.layout.fragment_edit_spot, container, false);
         Button editSearch = (Button) view.findViewById(R.id.buttonEditSearchSpot);
         editSearch.setOnClickListener(new View.OnClickListener()
@@ -36,8 +35,6 @@ public class EditSpotFragment extends Fragment
             @Override
             public void onClick(View viewInner)
             {
-                // TU BEDZIE SEARCH PUNKTU
-                //getFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditChosenSpotFragment()).commit();
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                 spots = databaseHelper.getAllSpots();
                 if(spots.isEmpty()){
