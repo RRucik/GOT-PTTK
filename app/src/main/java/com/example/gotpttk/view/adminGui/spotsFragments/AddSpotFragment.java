@@ -43,6 +43,10 @@ public class AddSpotFragment extends Fragment
                 String height = etSpotHeight.getText().toString();
                 String desc = etSpotDesc.getText().toString();
 
+                if (name.isEmpty())
+                {
+                    name = null;
+                }
                 try
                 {
                     spot = new Spot(name, Integer.parseInt(height), desc);

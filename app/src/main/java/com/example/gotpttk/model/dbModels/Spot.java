@@ -7,7 +7,6 @@ public class Spot {
     String Desc;
 
     public Spot(){
-
     }
 
     public Spot(String Name, int Height, String Desc)

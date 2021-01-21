@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Section {
     int IdSe;
-    int IdMAFK; // Mountain area foreign key
     int IdSpStart;
     int IdSpEnd;
     int Length;
@@ -21,7 +20,6 @@ public class Section {
 
     public Section(int idSe, int idMAFK, int idSpStart, int idSpEnd, int length, int pointsTo, int pointsFrom, String desc) {
         IdSe = idSe;
-        IdMAFK = idMAFK;
         IdSpStart = idSpStart;
         IdSpEnd = idSpEnd;
         Length = length;
@@ -37,14 +35,6 @@ public class Section {
 
     public void setIdSe(int idSe) {
         IdSe = idSe;
-    }
-
-    public int getIdMAFK() {
-        return IdMAFK;
-    }
-
-    public void setIdMAFK(int idMAFK) {
-        IdMAFK = idMAFK;
     }
 
     public int getIdSpStart() {

@@ -32,7 +32,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     // SECTIONS Table - column names
     private static final String COLUMN_SECTION_ID = "id_o";
-    private static final String COLUMN_SECTION_MOUNTAIN_RANGE_ID = "obszar_gorski_id_ob";
     private static final String COLUMN_SECTION_START_SPOT_ID = "punkt_pocz_id_p";
     private static final String COLUMN_SECTION_END_SPOT_ID = "punkt_konc_id_k";
     private static final String COLUMN_SECTION_LENGTH = "dlugosc";
@@ -42,10 +41,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COLUMN_SECTION_ACTIVE_SINCE = "aktywny_od";
     private static final String COLUMN_SECTION_OPEN = "otwarty";
 
-    // MOUNTAIN RANGES - column names
-    private static final String COLUMN_MOUNTAIN_RANGE_ID = "id_ob";
-    private static final String COLUMN_MOUNTAIN_RANGE_SUPERIOR_ID = "nadobszar_id_ob";
-    private static final String COLUMN_MOUNTAIN_RANGE_NAME = "nazwa_obszaru";
 
     // CREATE TABLE SPOT statement
     private static final String CREATE_TABLE_SPOT = "CREATE TABLE " + TABLE_SPOT
@@ -70,7 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         // Creating tables
         db.execSQL(CREATE_TABLE_SPOT);
 //        db.execSQL(CREATE_TABLE_SECTION);
-//        db.execSQL(CREATE_TABLE_MOUNTAIN_RANGE);
     }
 
     @Override
@@ -110,6 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             do
             {
                 Spot spot = new Spot();
+                spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
                 spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
                 spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
                 spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
