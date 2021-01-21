@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -53,7 +54,7 @@ public class EditSpotFragment extends Fragment
 
         @Override
         public long getItemId(int position) {
-            return position;
+            return spots.get(position).getIdSp();
         }
 
         @Override
@@ -104,6 +105,16 @@ public class EditSpotFragment extends Fragment
                 else{
                     ListView listview = (ListView)view.findViewById(R.id.listViewEditSpotSearch);
                     listview.setAdapter(new SpotListAdapter(getActivity()));
+                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Bundle passId = new Bundle();
+                            passId.putInt("id", (int)id);
+                            EditChosenSpotFragment fragment = new EditChosenSpotFragment();
+                            fragment.setArguments(passId);
+                            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                        }
+                    });
                 }
             }
         });
