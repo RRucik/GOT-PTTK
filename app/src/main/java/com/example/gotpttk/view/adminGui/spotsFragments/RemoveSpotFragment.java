@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,9 @@ import java.util.List;
 public class RemoveSpotFragment extends Fragment
 {
     List<Spot> spots = new ArrayList<Spot>();
+    Button removeSearch;
+    EditText etSpotNameFilter;
+    EditText etSpotHeightFilter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,14 +32,38 @@ public class RemoveSpotFragment extends Fragment
     {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_remove_spot, container, false);
-        Button removeSearch = (Button) view.findViewById(R.id.buttonRemoveSearchSpot);
+        removeSearch = (Button) view.findViewById(R.id.buttonRemoveSearchSpot);
+        etSpotNameFilter = view.findViewById(R.id.editTextRemoveSearchSpotName);
+        etSpotHeightFilter = view.findViewById(R.id.editTextRemoveSearchSpotHeight);
         removeSearch.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View viewInner)
             {
+                String name = etSpotNameFilter.getText().toString();
+                String height = etSpotHeightFilter.getText().toString();
+                Integer heightAsInt = null;
+                try
+                {
+                    // Repairing strings
+                    if (name.isEmpty())
+                    {
+                        name = null;
+                    }
+
+                    // Repairing integers
+                    if (!height.isEmpty())
+                    {
+                        heightAsInt = Integer.parseInt(height);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                }
+
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-                spots = databaseHelper.getAllSpots();
+                spots = databaseHelper.getFilteredSpots(name, heightAsInt);
                 if(spots.isEmpty()){
                     Toast.makeText(getContext(), "Brak punktów spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }

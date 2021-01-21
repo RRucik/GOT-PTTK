@@ -24,15 +24,18 @@ import com.example.gotpttk.model.spotModels.SpotListViewAdapter;
 public class EditSpotFragment extends Fragment
 {
     List<Spot> spots = new ArrayList<Spot>();
+    Button editSearch;
+    EditText etSpotNameFilter;
+    EditText etSpotHeightFilter;
 
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,
                              Bundle savedInstanceState)
     {
         final View view = inflater.inflate(R.layout.fragment_edit_spot, container, false);
-        Button editSearch = (Button) view.findViewById(R.id.buttonEditSearchSpot);
-        final EditText etSpotNameFilter = view.findViewById(R.id.editTextEditSearchSpotName);
-        final EditText etSpotHeightFilter = view.findViewById(R.id.editTextEditSearchSpotHeight);
+        editSearch = (Button) view.findViewById(R.id.buttonEditSearchSpot);
+        etSpotNameFilter = view.findViewById(R.id.editTextEditSearchSpotName);
+        etSpotHeightFilter = view.findViewById(R.id.editTextEditSearchSpotHeight);
         editSearch.setOnClickListener(new View.OnClickListener()
         {
             @Override
