@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COLUMN_SECTION_RETURN_POINTS = "punktacja_w_druga_strone";
     private static final String COLUMN_SECTION_HEIGHT_DIFF = "roznica_wys";
     private static final String COLUMN_SECTION_ACTIVE_SINCE = "aktywny_od";
+    private static final String COLUMN_SECTION_DESC = "opis";
     private static final String COLUMN_SECTION_OPEN = "otwarty";
 
 
@@ -66,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + COLUMN_SECTION_RETURN_POINTS + " INTEGER,"
             + COLUMN_SECTION_HEIGHT_DIFF + " INTEGER NOT NULL,"
             + COLUMN_SECTION_ACTIVE_SINCE + " TEXT NOT NULL,"
-            + COLUMN_SPOT_DESC + " TEXT,"
+            + COLUMN_SECTION_DESC + " TEXT,"
             + COLUMN_SECTION_OPEN + " INTEGER NOT NULL,"
             + " FOREIGN KEY ("+COLUMN_SECTION_START_SPOT_ID+") REFERENCES "+TABLE_SPOT+"("+COLUMN_SPOT_ID+"),"
             + " FOREIGN KEY ("+COLUMN_SECTION_END_SPOT_ID+") REFERENCES "+TABLE_SPOT+"("+COLUMN_SPOT_ID+"));";
@@ -201,6 +203,23 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //------------------------- SECTIONS CRUD OPERATIONS -------------------------
+    public boolean createSection(Section section)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SECTION_START_SPOT_ID, section.getIdSpStart());
+        values.put(COLUMN_SECTION_END_SPOT_ID, section.getIdSpEnd());
+        values.put(COLUMN_SECTION_LENGTH, section.getLength());
+        values.put(COLUMN_SECTION_POINTS, section.getPointsTo());
+        values.put(COLUMN_SECTION_RETURN_POINTS, section.getPointsFrom());
+        values.put(COLUMN_SECTION_HEIGHT_DIFF, section.getHeightDiff());
+        values.put(COLUMN_SECTION_ACTIVE_SINCE, section.getActiveFrom());
+        values.put(COLUMN_SECTION_DESC, section.getDesc());
+        values.put(COLUMN_SECTION_OPEN, section.getOpen());
+
+        long insert = db.insert(TABLE_SECTION, null, values);
+        return insert != -1;
+    }
 
     public void closeDB()
     {
