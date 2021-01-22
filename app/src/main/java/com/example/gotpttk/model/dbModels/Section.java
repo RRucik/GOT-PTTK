@@ -5,18 +5,18 @@ public class Section {
     Integer idSpStart;
     Integer idSpEnd;
     Integer length;
+    String mountainRange;
     Integer pointsTo;
     Integer pointsFrom;
-    Integer heightDiff;
-    String activeFrom;
-    String mountainRange;
+    String activeSince;
     String desc;
+    Integer heightDiff;
     Boolean open;
 
     public Section()
     {}
 
-    public Section(Integer idSpStart, Integer idSpEnd, String mountainRange, Integer length, Integer pointsTo, Integer pointsFrom, Integer heightDiff, String desc)
+    public Section(Integer idSpStart, Integer idSpEnd, Integer length, String mountainRange, Integer pointsTo, Integer pointsFrom, String activeSince, String desc, Integer heightDiff)
     {
         this.idSe = idSe;
         this.idSpStart = idSpStart;
@@ -25,20 +25,23 @@ public class Section {
         this.mountainRange = mountainRange;
         this.pointsTo = pointsTo;
         this.pointsFrom = pointsFrom;
-        this.heightDiff = heightDiff;
+        this.activeSince = activeSince;
         this.desc = desc;
+        this.heightDiff = heightDiff;
         this.open = true;
     }
 
-    public Section(Integer idSe, Integer idSpStart, Integer idSpEnd, String mountainRange, Integer length, Integer pointsTo, Integer pointsFrom, Integer heightDiff, String desc) {
+    public Section(Integer idSe, Integer idSpStart, Integer idSpEnd, Integer length, String mountainRange, Integer pointsTo, Integer pointsFrom, String activeSince, String desc, Integer heightDiff)
+    {
         this.idSe = idSe;
         this.idSpStart = idSpStart;
         this.idSpEnd = idSpEnd;
-        this.length = length;
         this.mountainRange = mountainRange;
+        this.length = length;
         this.pointsTo = pointsTo;
         this.pointsFrom = pointsFrom;
         this.heightDiff = heightDiff;
+        this.activeSince = activeSince;
         this.desc = desc;
         this.open = true;
     }
@@ -99,12 +102,12 @@ public class Section {
         this.heightDiff = heightDiff;
     }
 
-    public String getActiveFrom() {
-        return activeFrom;
+    public String getActiveSince() {
+        return activeSince;
     }
 
-    public void setActiveFrom(String activeFrom) {
-        this.activeFrom = activeFrom;
+    public void setActiveSince(String activeSince) {
+        this.activeSince = activeSince;
     }
 
     public String getDesc() {

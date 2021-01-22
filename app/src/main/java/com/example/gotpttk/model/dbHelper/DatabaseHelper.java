@@ -136,16 +136,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 + COLUMN_SPOT_ID + " = " + spot_id;
 
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c != null)
-            c.moveToFirst();
-
-        Spot spot = new Spot();
-        spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
-        spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
-        spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
-        spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
-
-        return spot;
+        if (c != null && c.moveToFirst())
+        {
+            Spot spot = new Spot();
+            spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
+            spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
+            spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
+            spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
+            return spot;
+        }
+        return null;
     }
 
     public Spot getSpotWithName(String spot_name)
@@ -155,16 +155,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 + COLUMN_SPOT_NAME + " = '" + spot_name + "'";
 
         Cursor c = db.rawQuery(selectQuery, null);
-        if (c != null)
-            c.moveToFirst();
-
-        Spot spot = new Spot();
-        spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
-        spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
-        spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
-        spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
-
-        return spot;
+        if (c != null && c.moveToFirst())
+        {
+            Spot spot = new Spot();
+            spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
+            spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
+            spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
+            spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
+            return spot;
+        }
+        return null;
     }
 
     public List<Spot> getFilteredSpots(String spot_name, Integer spot_height)
@@ -181,7 +181,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (c.moveToFirst())
+        if (c != null && c.moveToFirst())
         {
             do
             {
@@ -205,7 +205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (c.moveToFirst())
+        if (c != null && c.moveToFirst())
         {
             do
             {
@@ -232,7 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         values.put(COLUMN_SECTION_POINTS, section.getPointsTo());
         values.put(COLUMN_SECTION_RETURN_POINTS, section.getPointsFrom());
         values.put(COLUMN_SECTION_HEIGHT_DIFF, section.getHeightDiff());
-        values.put(COLUMN_SECTION_ACTIVE_SINCE, section.getActiveFrom());
+        values.put(COLUMN_SECTION_ACTIVE_SINCE, section.getActiveSince());
         values.put(COLUMN_SECTION_DESC, section.getDesc());
         values.put(COLUMN_SECTION_OPEN, section.getOpen());
 

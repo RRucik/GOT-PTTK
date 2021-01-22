@@ -55,8 +55,8 @@ public class AddSectionFragment extends Fragment
                 String mountainRange = etEditSectionMountain.getText().toString();
                 String pointsTo = etEditSectionPointsTo.getText().toString();
                 String pointsFrom = etEditSectionPointsFrom.getText().toString();
-                String activeSince = etEditSectionDesc.getText().toString();
-                String desc = etEditActiveSince.getText().toString();
+                String activeSince = etEditActiveSince.getText().toString();
+                String desc = etEditSectionDesc.getText().toString();
 
                 Integer lengthAsInt = null;
                 Integer pointsToAsInt = null;
@@ -84,24 +84,27 @@ public class AddSectionFragment extends Fragment
                     if (!pointsFrom.isEmpty())
                         pointsFromAsInt = Integer.parseInt(pointsFrom);
 
-//                    DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-//                    Spot spotStart = databaseHelper.getSpotWithName(startSpotName);
-//                    Spot spotEnd = databaseHelper.getSpotWithName(endSpotName);
-//                    Section section = (spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsTo, pointsFrom, activeSince, desc);
-//
-//                    boolean success = databaseHelper.createSection(section)
-//                    if (success)
-//                    {
-//                        Toast.makeText(view.getContext(), "Odcinek pomyślnie dodany", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else if (spotStart == null || spotEnd == null)
-//                    {
-//                        Toast.makeText(view.getContext(), "Nie można dodać odcinka - punkty o podanych nazwach nie istnieją", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(view.getContext(), "Nie można dodać odcinka - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
-//                    }
+                    DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
+                    Spot spotStart = databaseHelper.getSpotWithName(startSpotName);
+                    Spot spotEnd = databaseHelper.getSpotWithName(endSpotName);
+
+                    if (spotStart == null || spotEnd == null)
+                    {
+                        Toast.makeText(view.getContext(), "Nie można dodać odcinka - punkty o podanych nazwach nie istnieją", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        if(spotStart.getHeight() != null && spotEnd.getHeight() != null)
+                        {
+                            Integer heightDiff = Math.abs(spotStart.getHeight() - spotEnd.getHeight());
+                            section = new Section(spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsToAsInt, pointsFromAsInt, activeSince, desc, heightDiff);
+                            boolean success = databaseHelper.createSection(section);
+                            if (success)
+                                Toast.makeText(view.getContext(), "Odcinek pomyślnie dodany", Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(view.getContext(), "Nie można dodać odcinka - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
                 catch (Exception e)
                 {

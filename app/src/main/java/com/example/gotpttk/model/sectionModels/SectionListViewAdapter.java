@@ -9,10 +9,7 @@ import android.widget.TextView;
 
 import com.example.gotpttk.R;
 import com.example.gotpttk.model.dbModels.Section;
-import com.example.gotpttk.model.dbModels.Spot;
-import com.example.gotpttk.model.spotModels.SpotItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SectionListViewAdapter extends BaseAdapter {
@@ -68,7 +65,7 @@ public class SectionListViewAdapter extends BaseAdapter {
 
         section.length.setText(Integer.toString(sections.get(position).getLength()));
         section.points.setText(Integer.toString(sections.get(position).getPointsTo()));
-        section.active.setText(sections.get(position).getActiveFrom());
+        section.active.setText(sections.get(position).getActiveSince());
         section.mountain.setText(sections.get(position).getMountainRange());
 
         return v;
