@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.gotpttk.model.dbModels.Spot;
 
@@ -13,6 +14,9 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
+    // Logcat tag
+    private static final String LOG = "DatabaseHelper";
+
     // Database Version
     private static final int DATABASE_VERSION = 1;
 
@@ -33,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COLUMN_SECTION_ID = "id_o";
     private static final String COLUMN_SECTION_START_SPOT_ID = "punkt_pocz_id_p";
     private static final String COLUMN_SECTION_END_SPOT_ID = "punkt_konc_id_k";
-    private static final String COLUMN_SECTION_MOUTAIN_RANGE = "pasmo_gorskie";
+    private static final String COLUMN_SECTION_MOUNTAIN_RANGE = "pasmo_gorskie";
     private static final String COLUMN_SECTION_LENGTH = "dlugosc";
     private static final String COLUMN_SECTION_POINTS = "punktacja";
     private static final String COLUMN_SECTION_RETURN_POINTS = "punktacja_w_druga_strone";
@@ -56,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + COLUMN_SECTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_SECTION_START_SPOT_ID + " INTEGER NOT NULL,"
             + COLUMN_SECTION_END_SPOT_ID + " INTEGER NOT NULL,"
-            + COLUMN_SECTION_MOUTAIN_RANGE + " TEXT NOT NULL,"
+            + COLUMN_SECTION_MOUNTAIN_RANGE + " TEXT NOT NULL,"
             + COLUMN_SECTION_LENGTH + " INTEGER NOT NULL,"
             + COLUMN_SECTION_POINTS + " INTEGER NOT NULL,"
             + COLUMN_SECTION_RETURN_POINTS + " INTEGER,"
@@ -90,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
+    //------------------------- SPOTS CRUD OPERATIONS -------------------------
     public boolean createSpot(Spot spot)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -148,6 +153,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 + COLUMN_SPOT_NAME + " LIKE '%" + spot_name + "%' AND "
                 + COLUMN_SPOT_HEIGHT + " >= " + spot_height;
 
+        Log.e(LOG, selectQuery);
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -166,7 +173,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         return spots;
     }
-
 
     public List<Spot> getAllSpots()
     {
@@ -192,6 +198,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
         return spots;
     }
+
+    //------------------------- SECTIONS CRUD OPERATIONS -------------------------
 
     public void closeDB()
     {
