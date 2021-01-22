@@ -17,6 +17,7 @@ import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class AddSectionFragment extends Fragment
@@ -73,9 +74,11 @@ public class AddSectionFragment extends Fragment
                         endSpotName = null;
                     if (mountainRange.isEmpty())
                         mountainRange = null;
+
+                    SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
                     if (activeSince.isEmpty())
-                        activeSince = null;
-                    else if((new SimpleDateFormat("DD/MM/YYYY")).parse(activeSince) == null){
+                        activeSince = sdformat.format((new Date(System.currentTimeMillis())));
+                    else if(sdformat.parse(activeSince) == null){
                         Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
                         return;
                     }
