@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String CREATE_TABLE_SPOT = "CREATE TABLE "
             + TABLE_SPOT + "("
             + COLUMN_SPOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_SPOT_NAME + " TEXT NOT NULL,"
+            + COLUMN_SPOT_NAME + " TEXT NOT NULL UNIQUE,"
             + COLUMN_SPOT_HEIGHT + " INTEGER,"
             + COLUMN_SPOT_DESC + " TEXT)";
 
@@ -134,6 +134,25 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
                 + COLUMN_SPOT_ID + " = " + spot_id;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null)
+            c.moveToFirst();
+
+        Spot spot = new Spot();
+        spot.setIdSp(c.getInt(c.getColumnIndex(COLUMN_SPOT_ID)));
+        spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
+        spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
+        spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
+
+        return spot;
+    }
+
+    public Spot getSpotWithName(String spot_name)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
+                + COLUMN_SPOT_NAME + " LIKE '%" + spot_name + "%'";
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c != null)

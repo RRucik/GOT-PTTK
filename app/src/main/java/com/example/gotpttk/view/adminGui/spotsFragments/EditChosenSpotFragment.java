@@ -74,7 +74,7 @@ public class EditChosenSpotFragment extends Fragment
                         Toast.makeText(view.getContext(), "Punkt pomyślnie edytowany", Toast.LENGTH_SHORT).show();
                     } else
                     {
-                        Toast.makeText(view.getContext(), "Nie można edytować punktu - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(view.getContext(), "Nie można dodać punktu - niektóre wymagane pola nie wypełnione lub istenie punkt o podanej nazwie", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e)
                 {
