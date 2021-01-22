@@ -264,6 +264,104 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return insert != -1;
     }
 
+    public boolean updateSection(Section section)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SECTION_START_SPOT_ID, section.getIdSpStart());
+        values.put(COLUMN_SECTION_END_SPOT_ID, section.getIdSpEnd());
+        values.put(COLUMN_SECTION_LENGTH, section.getLength());
+        values.put(COLUMN_SECTION_MOUNTAIN_RANGE, section.getMountainRange());
+        values.put(COLUMN_SECTION_POINTS, section.getPointsTo());
+        values.put(COLUMN_SECTION_RETURN_POINTS, section.getPointsFrom());
+        values.put(COLUMN_SECTION_HEIGHT_DIFF, section.getHeightDiff());
+        values.put(COLUMN_SECTION_ACTIVE_SINCE, section.getActiveSince());
+        values.put(COLUMN_SECTION_DESC, section.getDesc());
+        values.put(COLUMN_SECTION_OPEN, section.getOpen());
+
+        long update = db.update(TABLE_SECTION, values, COLUMN_SECTION_ID + " = ?",
+                new String[] { String.valueOf(section.getIdSe())});
+        return update != -1;
+    }
+
+    public void deleteSection(long section_id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SECTION, COLUMN_SECTION_ID + " = ?",
+                new String[] { String.valueOf(section_id) });
+    }
+
+    public Section getSection(long section_id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
+                + COLUMN_SECTION_ID + " = " + section_id;
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c != null && c.moveToFirst())
+        {
+            Section section = new Section();
+            section.setIdSe(c.getInt(c.getColumnIndex(COLUMN_SECTION_ID)));
+            section.setIdSpStart(c.getInt(c.getColumnIndex(COLUMN_SECTION_START_SPOT_ID)));
+            section.setIdSpEnd(c.getInt(c.getColumnIndex(COLUMN_SECTION_END_SPOT_ID)));
+            section.setLength(c.getInt(c.getColumnIndex(COLUMN_SECTION_LENGTH)));
+            section.setMountainRange(c.getString(c.getColumnIndex(COLUMN_SECTION_MOUNTAIN_RANGE)));
+            section.setPointsTo(c.getInt(c.getColumnIndex(COLUMN_SECTION_POINTS)));
+            if(c.isNull(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)))
+            {
+                section.setPointsFrom(null);
+            }
+            else
+            {
+                section.setPointsFrom(c.getInt(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)));
+            }
+            section.setHeightDiff(c.getInt(c.getColumnIndex(COLUMN_SECTION_HEIGHT_DIFF)));
+            section.setActiveSince(c.getString(c.getColumnIndex(COLUMN_SECTION_ACTIVE_SINCE)));
+            section.setDesc(c.getString(c.getColumnIndex(COLUMN_SECTION_DESC)));
+            section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
+
+            return section;
+        }
+        return null;
+    }
+
+    public List<Section> getAllSections()
+    {
+        List<Section> sections = new ArrayList<Section>();
+        String selectQuery = "SELECT  * FROM " + TABLE_SECTION;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.moveToFirst())
+        {
+            do
+            {
+                Section section = new Section();
+                section.setIdSe(c.getInt(c.getColumnIndex(COLUMN_SECTION_ID)));
+                section.setIdSpStart(c.getInt(c.getColumnIndex(COLUMN_SECTION_START_SPOT_ID)));
+                section.setIdSpEnd(c.getInt(c.getColumnIndex(COLUMN_SECTION_END_SPOT_ID)));
+                section.setLength(c.getInt(c.getColumnIndex(COLUMN_SECTION_LENGTH)));
+                section.setMountainRange(c.getString(c.getColumnIndex(COLUMN_SECTION_MOUNTAIN_RANGE)));
+                section.setPointsTo(c.getInt(c.getColumnIndex(COLUMN_SECTION_POINTS)));
+                if(c.isNull(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)))
+                {
+                    section.setPointsFrom(null);
+                }
+                else
+                {
+                    section.setPointsFrom(c.getInt(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)));
+                }
+                section.setHeightDiff(c.getInt(c.getColumnIndex(COLUMN_SECTION_HEIGHT_DIFF)));
+                section.setActiveSince(c.getString(c.getColumnIndex(COLUMN_SECTION_ACTIVE_SINCE)));
+                section.setDesc(c.getString(c.getColumnIndex(COLUMN_SECTION_DESC)));
+                section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
+                sections.add(section);
+            } while (c.moveToNext());
+        }
+        return sections;
+    }
+
     public void closeDB()
     {
         SQLiteDatabase db = this.getReadableDatabase();
