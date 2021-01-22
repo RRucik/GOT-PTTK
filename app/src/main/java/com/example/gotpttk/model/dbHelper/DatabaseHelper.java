@@ -148,6 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public List<Spot> getFilteredSpots(String spot_name, Integer spot_height)
     {
+        spot_height = spot_height != null ? spot_height : -1;
         List<Spot> spots = new ArrayList<Spot>();
         String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
                 + COLUMN_SPOT_NAME + " LIKE '%" + spot_name + "%' AND "
