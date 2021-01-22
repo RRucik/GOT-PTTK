@@ -66,7 +66,11 @@ public class SectionListViewAdapter extends BaseAdapter {
         section.end.setText(db.getSpot(sections.get(position).getIdSpEnd()).getName());
 
         section.length.setText(Integer.toString(sections.get(position).getLength()));
-        section.points.setText(Integer.toString(sections.get(position).getPointsTo()));
+        String points = Integer.toString(sections.get(position).getPointsTo());
+        if(sections.get(position).getPointsFrom() != null){
+            points += "/" + Integer.toString(sections.get(position).getPointsFrom());
+        }
+        section.points.setText(points);
         section.active.setText(sections.get(position).getActiveSince());
         section.mountain.setText(sections.get(position).getMountainRange());
         section.desc.setText(sections.get(position).getDesc());

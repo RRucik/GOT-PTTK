@@ -39,7 +39,7 @@ EditChosenSectionFragment extends Fragment
         SectionId = getArguments().getLong("id");
         DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
-        Section current = databaseHelper.getSection(SectionId);
+        final Section current = databaseHelper.getSection(SectionId);
 
         btnSaveSectionChanges = (Button)view.findViewById(R.id.buttonEditSection);
         etEditSectionStart = view.findViewById(R.id.editTextStartingSpot);
@@ -71,8 +71,6 @@ EditChosenSectionFragment extends Fragment
                 String mountainRange = etEditSectionMountain.getText().toString();
                 String pointsTo = etEditSectionPointsTo.getText().toString();
                 String pointsFrom = etEditSectionPointsFrom.getText().toString();
-                // Trzeba dorobic pole active w edicie albo przekazywac wartosc currenta
-//                String activeSince = etEditActiveSince.getText().toString();
                 String desc = etEditSectionDesc.getText().toString();
 
                 Integer lengthAsInt = null;
@@ -116,7 +114,7 @@ EditChosenSectionFragment extends Fragment
                         {
                             heightDiff = Math.abs(spotStart.getHeight() - spotEnd.getHeight());
                         }
-                        section = new Section(1, spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsToAsInt, pointsFromAsInt, "23/11/2020", desc, heightDiff);
+                        section = new Section((int) SectionId, spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsToAsInt, pointsFromAsInt, current.getActiveSince(), desc, heightDiff);
                         boolean success = databaseHelper.updateSection(section);
                         if (success)
                         {

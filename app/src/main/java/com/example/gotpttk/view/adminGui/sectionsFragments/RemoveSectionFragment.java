@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.sectionModels.SectionListViewAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,12 @@ import java.util.List;
 public class RemoveSectionFragment extends Fragment
 {
     List<Section> sections = new ArrayList<>();
+    EditText etSectionStart;
+    EditText etSectionEnd;
+    EditText etSectionLength;
+    EditText etSectionMountain;
+    EditText etSectionPoints;
+    EditText etSectionActive;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,15 +40,62 @@ public class RemoveSectionFragment extends Fragment
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_remove_section, container, false);
         Button removeSearch = (Button) view.findViewById(R.id.buttonRemoveSearchSection);
+        etSectionStart = view.findViewById(R.id.editTextStartingSpot);
+        etSectionEnd = view.findViewById(R.id.editTextEndingSpot);
+        etSectionLength = view.findViewById(R.id.editTextMinLength);
+        etSectionMountain = view.findViewById(R.id.editTextMountainRange);
+        etSectionPoints = view.findViewById(R.id.editTextMinPoints);
+        etSectionActive = view.findViewById(R.id.editTextActiveSince);
         removeSearch.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View viewInner)
             {
+                String start = etSectionStart.getText().toString();
+                String end = etSectionEnd.getText().toString();
+                String length = etSectionLength.getText().toString();
+                String mountain = etSectionMountain.getText().toString();
+                String points = etSectionPoints.getText().toString();
+                String active = etSectionActive.getText().toString();
+                Integer lengthAsInt = null;
+                Integer pointsAsInt = null;
+
+                try{
+                    if(!length.isEmpty()){
+                        lengthAsInt = Integer.parseInt(length);
+                    }
+                    if(!points.isEmpty()){
+                        pointsAsInt = Integer.parseInt(points);
+                    }
+                    if(active.isEmpty()){
+                        active = null;
+                    }
+                    else{
+                        SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
+                        if(sdformat.parse(active) == null){
+                            Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+
+                    if(start.isEmpty()){
+                        start = null;
+                    }
+                    if(end.isEmpty()){
+                        end = null;
+                    }
+                    if(mountain.isEmpty()){
+                        mountain = null;
+                    }
+                }
+                catch(Exception e){
+                    Toast.makeText(view.getContext(), "Nie można wyszukać odcinków - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
-                // UZUPELNIENIE LISTY SECTIONS METODA Z HELPERA ORAZ ODCZYTANIE Z POL DANYCH DO FILTRU
-                //sections = databaseHelper.getAllSections();
+                sections = databaseHelper.getAllSections();
 
                 if(sections.isEmpty()){
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
