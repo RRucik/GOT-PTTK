@@ -39,6 +39,7 @@ public class RemoveSectionFragment extends Fragment
             {
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
+                // UZUPELNIENIE LISTY SECTIONS METODA Z HELPERA ORAZ ODCZYTANIE Z POL DANYCH DO FILTRU
                 //sections = databaseHelper.getAllSections();
 
                 if(sections.isEmpty()){

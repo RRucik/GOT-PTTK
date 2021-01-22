@@ -35,11 +35,14 @@ public class RemoveChosenSectionFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_edit_chosen_section, container, false);
         SectionId = getArguments().getLong("id");
         DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-        //Uzupelnic danymi - zamiast new section dac getSection(id)
+
+        // POD CURRENT PODPIAC SECTION Z HELPERA O DANYM ID
         Section current = new Section();
+        //
+
         btnRemoveSection = (Button)view.findViewById(R.id.buttonRemoveSection);
         tvRemoveSectionStart = view.findViewById(R.id.textViewStartingSpotValue);
-        //set
+        //SET TEXT JAK W SPOT CHOSEN FRAGMENT - ANALOGICZNIE DLA RESZTY NIZEJ
         tvRemoveSectionEnd = view.findViewById(R.id.textViewEndingSpotValue);
 
         tvRemoveSectionLength = view.findViewById(R.id.textViewLengthValue);

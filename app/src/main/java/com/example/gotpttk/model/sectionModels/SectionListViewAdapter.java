@@ -61,12 +61,15 @@ public class SectionListViewAdapter extends BaseAdapter {
             section = (SectionItem) v.getTag();
         }
 
-        section.start.setText(sections.get(position).getIdSpStart());
-        section.end.setText(sections.get(position).getIdSpEnd());
-        section.length.setText(sections.get(position).getLength());
-        section.points.setText(sections.get(position).getPointsTo());
+        // ZAMIANA ID NA NAZWY
+        section.start.setText(Integer.toString(sections.get(position).getIdSpStart()));
+        section.end.setText(Integer.toString(sections.get(position).getIdSpEnd()));
+        //
+
+        section.length.setText(Integer.toString(sections.get(position).getLength()));
+        section.points.setText(Integer.toString(sections.get(position).getPointsTo()));
         section.active.setText(sections.get(position).getActiveFrom());
-        section.mountain.setText("Pasmo gór");
+        section.mountain.setText(sections.get(position).getMountainRange());
 
         return v;
     }

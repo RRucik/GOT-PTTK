@@ -9,6 +9,7 @@ public class Section {
     Integer pointsFrom;
     Integer heightDiff;
     String activeFrom;
+    String mountainRange;
     String desc;
     Boolean open;
 
@@ -104,5 +105,13 @@ public class Section {
 
     public void setOpen(Boolean open) {
         this.open = open;
+    }
+
+    public String getMountainRange() {
+        return mountainRange;
+    }
+
+    public void setMountainRange(String mountainRange) {
+        this.mountainRange = mountainRange;
     }
 }

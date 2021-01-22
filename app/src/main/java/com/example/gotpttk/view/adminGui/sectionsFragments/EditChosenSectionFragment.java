@@ -15,7 +15,8 @@ import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
 
 
-public class EditChosenSectionFragment extends Fragment
+public class
+EditChosenSectionFragment extends Fragment
 {
     Button btnSaveSectionChanges;
     EditText etEditSectionStart;
@@ -35,11 +36,14 @@ public class EditChosenSectionFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_edit_chosen_section, container, false);
         SectionId = getArguments().getLong("id");
         DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-        //Uzupelnic danymi - zamiast new section dac getSection(id)
+
+        // POD CURRENT PODPIAC SECTION Z HELPERA O DANYM ID
         Section current = new Section();
+        //
+
         btnSaveSectionChanges = (Button)view.findViewById(R.id.buttonEditSection);
         etEditSectionStart = view.findViewById(R.id.editTextStartingSpot);
-        //set
+        //SET TEXT JAK W SPOT CHOSEN FRAGMENT - ANALOGICZNIE DLA RESZTY NIZEJ
         etEditSectionEnd = view.findViewById(R.id.editTextEndingSpot);
 
         etEditSectionLength = view.findViewById(R.id.editTextLength);
