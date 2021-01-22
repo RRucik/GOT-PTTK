@@ -134,7 +134,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
                 + COLUMN_SPOT_ID + " = " + spot_id;
-
         Cursor c = db.rawQuery(selectQuery, null);
         if (c != null && c.moveToFirst())
         {
@@ -143,6 +142,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             spot.setName(c.getString(c.getColumnIndex(COLUMN_SPOT_NAME)));
             spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
             spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));
+
             return spot;
         }
         return null;
