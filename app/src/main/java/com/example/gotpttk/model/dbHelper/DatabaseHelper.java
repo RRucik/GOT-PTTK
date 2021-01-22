@@ -152,7 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_SPOT + " WHERE "
-                + COLUMN_SPOT_NAME + " LIKE '%" + spot_name + "%'";
+                + COLUMN_SPOT_NAME + " = '" + spot_name + "'";
 
         Cursor c = db.rawQuery(selectQuery, null);
         if (c != null)
