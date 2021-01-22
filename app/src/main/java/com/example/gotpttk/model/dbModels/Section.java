@@ -16,13 +16,29 @@ public class Section {
     public Section()
     {}
 
-    public Section(Integer idSe, Integer idSpStart, Integer idSpEnd, Integer length, Integer pointsTo, Integer pointsFrom, String desc) {
+    public Section(Integer idSpStart, Integer idSpEnd, String mountainRange, Integer length, Integer pointsTo, Integer pointsFrom, Integer heightDiff, String desc)
+    {
         this.idSe = idSe;
         this.idSpStart = idSpStart;
         this.idSpEnd = idSpEnd;
         this.length = length;
+        this.mountainRange = mountainRange;
         this.pointsTo = pointsTo;
         this.pointsFrom = pointsFrom;
+        this.heightDiff = heightDiff;
+        this.desc = desc;
+        this.open = true;
+    }
+
+    public Section(Integer idSe, Integer idSpStart, Integer idSpEnd, String mountainRange, Integer length, Integer pointsTo, Integer pointsFrom, Integer heightDiff, String desc) {
+        this.idSe = idSe;
+        this.idSpStart = idSpStart;
+        this.idSpEnd = idSpEnd;
+        this.length = length;
+        this.mountainRange = mountainRange;
+        this.pointsTo = pointsTo;
+        this.pointsFrom = pointsFrom;
+        this.heightDiff = heightDiff;
         this.desc = desc;
         this.open = true;
     }

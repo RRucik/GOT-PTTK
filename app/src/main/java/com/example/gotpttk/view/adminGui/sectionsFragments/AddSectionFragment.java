@@ -42,50 +42,70 @@ public class AddSectionFragment extends Fragment
         etEditSectionMountain = view.findViewById(R.id.editTextMountainRange);
         etEditSectionPointsTo = view.findViewById(R.id.editTextPoints);
         etEditSectionPointsFrom = view.findViewById(R.id.editTextReturnPoints);
-        etEditSectionDesc = view.findViewById(R.id.editTextSectionDesc);
         etEditActiveSince = view.findViewById(R.id.editTextActiveSince);
+        etEditSectionDesc = view.findViewById(R.id.editTextSectionDesc);
         btnSaveSectionChanges.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
+            public void onClick(View view)
             {
                 Section section;
-                String startPointName = etSpotName.getText().toString();
-                String endPointName = etSpotHeight.getText().toString();
-                String desc = etSpotDesc.getText().toString();
-                Integer heightAsInt = null;
+                String startSpotName = etEditSectionStart.getText().toString();
+                String endSpotName = etEditSectionEnd.getText().toString();
+                String length = etEditSectionLength.getText().toString();
+                String mountainRange = etEditSectionMountain.getText().toString();
+                String pointsTo = etEditSectionPointsTo.getText().toString();
+                String pointsFrom = etEditSectionPointsFrom.getText().toString();
+                String activeSince = etEditSectionDesc.getText().toString();
+                String desc = etEditActiveSince.getText().toString();
+
+                Integer lengthAsInt = null;
+                Integer pointsToAsInt = null;
+                Integer pointsFromAsInt = null;
 
                 try
                 {
                     // Repairing strings
-                    if (name.isEmpty())
-                    {
-                        name = null;
-                    }
+                    if (startSpotName.isEmpty())
+                        startSpotName = null;
+                    if (endSpotName.isEmpty())
+                        endSpotName = null;
+                    if (mountainRange.isEmpty())
+                        mountainRange = null;
+                    if (activeSince.isEmpty())
+                        activeSince = null;
                     if (desc.isEmpty())
-                    {
                         desc = null;
-                    }
-                    // Repairing integers
-                    if (!height.isEmpty())
-                    {
-                        heightAsInt = Integer.parseInt(height);
-                    }
 
-                    spot = new Spot(name, heightAsInt, desc);
-                    DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-                    boolean success = databaseHelper.createSpot(spot);
-                    if (success)
-                    {
-                        Toast.makeText(view.getContext(), "Punkt pomyślnie dodany", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(view.getContext(), "Nie można dodać punktu - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
-                    }
+                    // Repairing integers
+                    if (!length.isEmpty())
+                        lengthAsInt = Integer.parseInt(length);
+                    if (!pointsTo.isEmpty())
+                        pointsToAsInt = Integer.parseInt(pointsTo);
+                    if (!pointsFrom.isEmpty())
+                        pointsFromAsInt = Integer.parseInt(pointsFrom);
+
+//                    DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
+//                    Spot spotStart = databaseHelper.getSpotWithName(startSpotName);
+//                    Spot spotEnd = databaseHelper.getSpotWithName(endSpotName);
+//                    Section section = (spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsTo, pointsFrom, activeSince, desc);
+//
+//                    boolean success = databaseHelper.createSection(section)
+//                    if (success)
+//                    {
+//                        Toast.makeText(view.getContext(), "Odcinek pomyślnie dodany", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else if (spotStart == null || spotEnd == null)
+//                    {
+//                        Toast.makeText(view.getContext(), "Nie można dodać odcinka - punkty o podanych nazwach nie istnieją", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else
+//                    {
+//                        Toast.makeText(view.getContext(), "Nie można dodać odcinka - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
+//                    }
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Nie można dodać odcinka - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
                 }
             }
         });
