@@ -94,19 +94,20 @@ public class AddSectionFragment extends Fragment
                     }
                     else
                     {
+                        Integer heightDiff = null;
                         if(spotStart.getHeight() != null && spotEnd.getHeight() != null)
                         {
-                            Integer heightDiff = Math.abs(spotStart.getHeight() - spotEnd.getHeight());
-                            section = new Section(spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsToAsInt, pointsFromAsInt, activeSince, desc, heightDiff);
-                            boolean success = databaseHelper.createSection(section);
-                            if (success)
-                            {
-                                Toast.makeText(view.getContext(), "Odcinek pomyślnie dodany", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(view.getContext(), "Nie można dodać odcinka - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
-                            }
+                            heightDiff = Math.abs(spotStart.getHeight() - spotEnd.getHeight());
+                        }
+                        section = new Section(spotStart.getIdSp(), spotEnd.getIdSp(), lengthAsInt, mountainRange, pointsToAsInt, pointsFromAsInt, activeSince, desc, heightDiff);
+                        boolean success = databaseHelper.createSection(section);
+                        if (success)
+                        {
+                            Toast.makeText(view.getContext(), "Odcinek pomyślnie dodany", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText(view.getContext(), "Nie można dodać odcinka - niektóre wymagane pola nie wypełnione", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

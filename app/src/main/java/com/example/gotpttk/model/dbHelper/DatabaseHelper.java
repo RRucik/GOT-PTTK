@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + COLUMN_SECTION_LENGTH + " INTEGER NOT NULL,"
             + COLUMN_SECTION_POINTS + " INTEGER NOT NULL,"
             + COLUMN_SECTION_RETURN_POINTS + " INTEGER,"
-            + COLUMN_SECTION_HEIGHT_DIFF + " INTEGER NOT NULL,"
+            + COLUMN_SECTION_HEIGHT_DIFF + " INTEGER,"
             + COLUMN_SECTION_ACTIVE_SINCE + " TEXT NOT NULL,"
             + COLUMN_SECTION_DESC + " TEXT,"
             + COLUMN_SECTION_OPEN + " INTEGER NOT NULL,"
@@ -252,6 +252,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         values.put(COLUMN_SECTION_START_SPOT_ID, section.getIdSpStart());
         values.put(COLUMN_SECTION_END_SPOT_ID, section.getIdSpEnd());
         values.put(COLUMN_SECTION_LENGTH, section.getLength());
+        values.put(COLUMN_SECTION_MOUNTAIN_RANGE, section.getMountainRange());
         values.put(COLUMN_SECTION_POINTS, section.getPointsTo());
         values.put(COLUMN_SECTION_RETURN_POINTS, section.getPointsFrom());
         values.put(COLUMN_SECTION_HEIGHT_DIFF, section.getHeightDiff());

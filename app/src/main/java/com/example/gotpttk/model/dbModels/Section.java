@@ -46,59 +46,59 @@ public class Section {
         this.open = true;
     }
 
-    public int getIdSe() {
+    public Integer getIdSe() {
         return idSe;
     }
 
-    public void setIdSe(int idSe) {
+    public void setIdSe(Integer idSe) {
         this.idSe = idSe;
     }
 
-    public int getIdSpStart() {
+    public Integer getIdSpStart() {
         return idSpStart;
     }
 
-    public void setIdSpStart(int idSpStart) {
+    public void setIdSpStart(Integer idSpStart) {
         this.idSpStart = idSpStart;
     }
 
-    public int getIdSpEnd() {
+    public Integer getIdSpEnd() {
         return idSpEnd;
     }
 
-    public void setIdSpEnd(int idSpEnd) {
+    public void setIdSpEnd(Integer idSpEnd) {
         this.idSpEnd = idSpEnd;
     }
 
-    public int getLength() {
+    public Integer getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(Integer length) {
         this.length = length;
     }
 
-    public int getPointsTo() {
+    public Integer getPointsTo() {
         return pointsTo;
     }
 
-    public void setPointsTo(int pointsTo) {
+    public void setPointsTo(Integer pointsTo) {
         this.pointsTo = pointsTo;
     }
 
-    public int getPointsFrom() {
+    public Integer getPointsFrom() {
         return pointsFrom;
     }
 
-    public void setPointsFrom(int pointsFrom) {
+    public void setPointsFrom(Integer pointsFrom) {
         this.pointsFrom = pointsFrom;
     }
 
-    public int getHeightDiff() {
+    public Integer getHeightDiff() {
         return heightDiff;
     }
 
-    public void setHeightDiff(int heightDiff) {
+    public void setHeightDiff(Integer heightDiff) {
         this.heightDiff = heightDiff;
     }
 
