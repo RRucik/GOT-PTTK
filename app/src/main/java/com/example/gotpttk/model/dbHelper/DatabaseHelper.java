@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -122,11 +122,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return update != -1;
     }
 
-    public void deleteSpot(long spot_id)
+    public boolean deleteSpot(long spot_id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
+        long delete = db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
                 new String[] { String.valueOf(spot_id) });
+        return delete != 0;
     }
 
     public Spot getSpot(long spot_id)
@@ -284,11 +285,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return update != -1;
     }
 
-    public void deleteSection(long section_id)
+    public boolean deleteSection(long section_id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_SECTION, COLUMN_SECTION_ID + " = ?",
+        long delete = db.delete(TABLE_SECTION, COLUMN_SECTION_ID + " = ?",
                 new String[] { String.valueOf(section_id) });
+        return delete != 0;
     }
 
     public Section getSection(long section_id)

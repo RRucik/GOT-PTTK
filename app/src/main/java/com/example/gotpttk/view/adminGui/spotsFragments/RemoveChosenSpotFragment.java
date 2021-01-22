@@ -46,8 +46,15 @@ public class RemoveChosenSpotFragment extends Fragment
             @Override
             public void onClick(View view) {
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-                databaseHelper.deleteSpot(SpotId);
-                Toast.makeText(view.getContext(), "Punkt pomyślnie usunięty", Toast.LENGTH_SHORT).show();
+                boolean success = databaseHelper.deleteSpot(SpotId);
+                if (success)
+                {
+                    Toast.makeText(view.getContext(), "Punkt pomyślnie usunięty", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(view.getContext(), "Punkt nie może zostać usunięty - jest częścią odcinka", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
