@@ -151,7 +151,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="@string/remove_button_text"
+        android:text="@string/search_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextActiveSince" />
@@ -177,7 +177,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonRemoveSearchSection" />
 
     <ListView
-        android:id="@+id/listViewEditSpotSearch"
+        android:id="@+id/listViewRemoveSectionSearch"
         android:layout_width="413dp"
         android:layout_height="223dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

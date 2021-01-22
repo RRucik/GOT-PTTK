@@ -177,7 +177,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonEditSearchSection" />
 
     <ListView
-        android:id="@+id/listViewEditSpotSearch"
+        android:id="@+id/listViewEditSectionSearch"
         android:layout_width="413dp"
         android:layout_height="223dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
