@@ -186,7 +186,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextReturnPoints"/>
 
     <EditText
-        android:id="@+id/editTextSpotDesc"
+        android:id="@+id/editTextSectionDesc"
         android:layout_width="298dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"

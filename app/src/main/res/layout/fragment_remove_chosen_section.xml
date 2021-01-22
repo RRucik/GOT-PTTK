@@ -56,18 +56,18 @@
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
-        android:id="@+id/editTextStartingSpot"
+        android:id="@+id/textViewStartingSpotValue"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toStartOf="@+id/editTextEndingSpot"
+        app:layout_constraintEnd_toStartOf="@+id/textViewEndingSpotValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewStartingSpot" />
 
     <TextView
-        android:id="@+id/editTextEndingSpot"
+        android:id="@+id/textViewEndingSpotValue"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
@@ -75,7 +75,7 @@
         android:textColor="@color/colorBlack"
         app:layout_constraintTop_toBottomOf="@+id/textViewEndingSpot"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextStartingSpot" />
+        app:layout_constraintStart_toEndOf="@+id/textViewStartingSpotValue" />
 
     <TextView
         android:id="@+id/textViewLength"
@@ -86,7 +86,7 @@
         android:text="@string/length_text"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextStartingSpot" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStartingSpotValue" />
 
     <TextView
         android:id="@+id/textViewMountainRange"
@@ -97,21 +97,21 @@
         android:text="@string/mountain_range_text"
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEndingSpot" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewEndingSpotValue" />
 
     <TextView
-        android:id="@+id/editTextLength"
+        android:id="@+id/textViewLengthValue"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toStartOf="@+id/editTextMountainRange"
+        app:layout_constraintEnd_toStartOf="@+id/textViewMountainRangeValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLength" />
 
     <TextView
-        android:id="@+id/editTextMountainRange"
+        android:id="@+id/textViewMountainRangeValue"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
@@ -119,7 +119,7 @@
         android:textColor="@color/colorBlack"
         app:layout_constraintTop_toBottomOf="@+id/textViewMountainRange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextLength" />
+        app:layout_constraintStart_toEndOf="@+id/textViewLengthValue" />
 
     <TextView
         android:id="@+id/textViewPoints"
@@ -130,7 +130,7 @@
         android:text="@string/points_text"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLength"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewLengthValue"/>
 
     <TextView
         android:id="@+id/textViewReturnPoints"
@@ -141,27 +141,27 @@
         android:text="@string/reverse_points_text"
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMountainRange"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewMountainRangeValue"/>
 
     <TextView
-        android:id="@+id/editTextPoints"
+        android:id="@+id/textViewPointsValue"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toStartOf="@+id/editTextReturnPoints"
+        app:layout_constraintEnd_toStartOf="@+id/textViewReturnPointsValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPoints" />
 
     <TextView
-        android:id="@+id/editTextReturnPoints"
+        android:id="@+id/textViewReturnPointsValue"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@+id/editTextPoints"
+        app:layout_constraintStart_toEndOf="@+id/textViewPointsValue"
         app:layout_constraintTop_toBottomOf="@+id/textViewReturnPoints"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -174,10 +174,10 @@
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextReturnPoints"/>
+        app:layout_constraintTop_toBottomOf="@+id/textViewReturnPointsValue"/>
 
     <TextView
-        android:id="@+id/editTextSpotDesc"
+        android:id="@+id/textViewSectionDesc"
         android:layout_width="298dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
@@ -188,14 +188,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
 
     <Button
-        android:id="@+id/buttonEditSection"
+        android:id="@+id/buttonRemoveSection"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="@string/save_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSpotDesc" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSectionDesc" />
 
     <ImageView
         android:id="@+id/imageView"
