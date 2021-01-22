@@ -35,7 +35,11 @@ public class RemoveChosenSpotFragment extends Fragment
         tvRemoveSpotName = view.findViewById(R.id.textViewRemoveSpotNameValue);
         tvRemoveSpotName.setText(current.getName());
         tvRemoveSpotHeight = view.findViewById(R.id.textViewRemoveSpotHeightValue);
-        tvRemoveSpotHeight.setText(Integer.toString(current.getHeight()));
+        String height = "";
+        if(current.getHeight() != null){
+            height = Integer.toString(current.getHeight());
+        }
+        tvRemoveSpotHeight.setText(height);
         tvRemoveSpotDesc = view.findViewById(R.id.textViewRemoveSpotDescValue);
         tvRemoveSpotDesc.setText(current.getDesc());
         btnRemoveSpot.setOnClickListener(new View.OnClickListener() {

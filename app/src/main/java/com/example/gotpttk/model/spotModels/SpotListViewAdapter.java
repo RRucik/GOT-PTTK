@@ -60,7 +60,11 @@ public class SpotListViewAdapter extends BaseAdapter {
         }
 
         spot.name.setText(spots.get(position).getName());
-        spot.height.setText(Integer.toString(spots.get(position).getHeight()));
+        String height = "";
+        if(spots.get(position).getHeight() != null){
+            height = Integer.toString(spots.get(position).getHeight());
+        }
+        spot.height.setText(height);
         spot.desc.setText(spots.get(position).getDesc());
 
         return v;

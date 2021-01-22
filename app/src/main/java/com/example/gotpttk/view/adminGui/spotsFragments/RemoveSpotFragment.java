@@ -45,11 +45,7 @@ public class RemoveSpotFragment extends Fragment
                 Integer heightAsInt = null;
                 try
                 {
-                    // Repairing strings
-                    if (name.isEmpty())
-                    {
-                        name = null;
-                    }
+                    // Repairing string
 
                     // Repairing integers
                     if (!height.isEmpty())

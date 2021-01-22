@@ -36,7 +36,11 @@ public class EditChosenSpotFragment extends Fragment
         etEditSpotName = view.findViewById(R.id.editTextEditSpotName);
         etEditSpotName.setText(current.getName());
         etEditSpotHeight = view.findViewById(R.id.editTextEditSpotHeight);
-        etEditSpotHeight.setText(Integer.toString(current.getHeight()));
+        String height = "";
+        if(current.getHeight() != null){
+            height = Integer.toString(current.getHeight());
+        }
+        etEditSpotHeight.setText(height);
         etEditSpotDesc = view.findViewById(R.id.editTextEditSpotDesc);
         etEditSpotDesc.setText(current.getDesc());
         btnSaveSpotChanges.setOnClickListener(new View.OnClickListener()
