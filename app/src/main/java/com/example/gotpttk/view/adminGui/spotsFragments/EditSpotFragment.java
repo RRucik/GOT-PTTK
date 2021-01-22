@@ -62,7 +62,7 @@ public class EditSpotFragment extends Fragment
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Nie można wyszukać punktów - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
                 }
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());

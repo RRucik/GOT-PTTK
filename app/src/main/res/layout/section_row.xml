@@ -10,12 +10,12 @@
         android:id="@+id/view"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="23dp"
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSectionRowMountain" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSectionDesc" />
 
     <TextView
         android:id="@+id/textViewSectionRowStart"
@@ -162,5 +162,29 @@
         app:layout_constraintEnd_toStartOf="@+id/textViewSectionRowMountainValue"
         app:layout_constraintStart_toEndOf="@+id/textViewSectionRowActiveSinceValue"
         app:layout_constraintTop_toBottomOf="@+id/textViewSectionRowPoints" />
+
+    <TextView
+        android:id="@+id/textViewSectionDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/description_text"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSectionRowActiveSince" />
+
+    <TextView
+        android:id="@+id/textViewSectionDescValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="25dp"
+        android:text="TextView"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewSectionDesc"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSectionRowActiveSinceValue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

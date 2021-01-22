@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.gotpttk.R;
+import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
 
 import java.util.List;
@@ -52,21 +53,23 @@ public class SectionListViewAdapter extends BaseAdapter {
             section.points = (TextView) v.findViewById(R.id.textViewSectionRowPointsValue);
             section.active = (TextView) v.findViewById(R.id.textViewSectionRowActiveSinceValue);
             section.mountain = (TextView) v.findViewById(R.id.textViewSectionRowMountainValue);
+            section.desc = (TextView) v.findViewById(R.id.textViewSectionDescValue);
             v.setTag(section);
         }
         else{
             section = (SectionItem) v.getTag();
         }
 
-        // ZAMIANA ID NA NAZWY
-        section.start.setText(Integer.toString(sections.get(position).getIdSpStart()));
-        section.end.setText(Integer.toString(sections.get(position).getIdSpEnd()));
-        //
+        DatabaseHelper db = new DatabaseHelper(v.getContext());
+
+        section.start.setText(db.getSpot(sections.get(position).getIdSpStart()).getName());
+        section.end.setText(db.getSpot(sections.get(position).getIdSpEnd()).getName());
 
         section.length.setText(Integer.toString(sections.get(position).getLength()));
         section.points.setText(Integer.toString(sections.get(position).getPointsTo()));
         section.active.setText(sections.get(position).getActiveSince());
         section.mountain.setText(sections.get(position).getMountainRange());
+        section.desc.setText(sections.get(position).getDesc());
 
         return v;
     }

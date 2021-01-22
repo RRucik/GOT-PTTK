@@ -9,4 +9,5 @@ public class SectionItem {
     TextView points;
     TextView active;
     TextView mountain;
+    TextView desc;
 }

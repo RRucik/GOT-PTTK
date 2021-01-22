@@ -36,21 +36,30 @@ EditChosenSectionFragment extends Fragment
     {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_chosen_section, container, false);
-//        SectionId = getArguments().getLong("id");
+        SectionId = getArguments().getLong("id");
         DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
-        // POD CURRENT PODPIAC SECTION Z HELPERA O DANYM ID
-        Section current = new Section();
-        //
+        Section current = databaseHelper.getSection(SectionId);
 
         btnSaveSectionChanges = (Button)view.findViewById(R.id.buttonEditSection);
         etEditSectionStart = view.findViewById(R.id.editTextStartingSpot);
+        etEditSectionStart.setText(databaseHelper.getSpot(current.getIdSpStart()).getName());
         etEditSectionEnd = view.findViewById(R.id.editTextEndingSpot);
+        etEditSectionEnd.setText(databaseHelper.getSpot(current.getIdSpEnd()).getName());
         etEditSectionLength = view.findViewById(R.id.editTextLength);
+        etEditSectionLength.setText(Integer.toString(current.getLength()));
         etEditSectionMountain = view.findViewById(R.id.editTextMountainRange);
+        etEditSectionMountain.setText(current.getMountainRange());
         etEditSectionPointsTo = view.findViewById(R.id.editTextPoints);
+        etEditSectionPointsTo.setText(Integer.toString(current.getPointsTo()));
+        String pointsFrom = "";
+        if(current.getPointsFrom() != null){
+            pointsFrom = Integer.toString(current.getPointsFrom());
+        }
         etEditSectionPointsFrom = view.findViewById(R.id.editTextReturnPoints);
+        etEditSectionPointsFrom.setText(pointsFrom);
         etEditSectionDesc = view.findViewById(R.id.editTextSectionDesc);
+        etEditSectionDesc.setText(current.getDesc());
         btnSaveSectionChanges.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
