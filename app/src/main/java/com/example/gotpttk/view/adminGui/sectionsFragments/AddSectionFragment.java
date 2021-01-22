@@ -16,6 +16,8 @@ import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
+import java.text.SimpleDateFormat;
+
 
 public class AddSectionFragment extends Fragment
 {
@@ -73,6 +75,10 @@ public class AddSectionFragment extends Fragment
                         mountainRange = null;
                     if (activeSince.isEmpty())
                         activeSince = null;
+                    else if((new SimpleDateFormat("DD/MM/YYYY")).parse(activeSince) == null){
+                        Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (desc.isEmpty())
                         desc = null;
 
@@ -113,7 +119,7 @@ public class AddSectionFragment extends Fragment
                 }
                 catch (Exception e)
                 {
-                    Toast.makeText(view.getContext(), "Nie można dodać odcinka - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), "Nie można dodać odcinka - dane wprowadzone w złym formacie (data musi być wprowadzona w formacie DD/MM/YY)", Toast.LENGTH_SHORT).show();
                 }
             }
         });

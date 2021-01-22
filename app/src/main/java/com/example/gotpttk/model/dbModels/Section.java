@@ -1,5 +1,9 @@
 package com.example.gotpttk.model.dbModels;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Section {
     Integer idSe;
     Integer idSpStart;
@@ -119,7 +123,21 @@ public class Section {
     }
 
     public Boolean getOpen() {
-        return open;
+        if(this.activeSince == null)
+            return true;
+        else{
+            SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
+            try {
+                if(sdformat.parse(activeSince).compareTo(sdformat.parse((new Date(System.currentTimeMillis())).toString())) > 0){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            } catch (ParseException e) {
+                return false;
+            }
+        }
     }
 
     public void setOpen(Boolean open) {
