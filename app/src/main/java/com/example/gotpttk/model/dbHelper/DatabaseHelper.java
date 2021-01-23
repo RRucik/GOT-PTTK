@@ -3,6 +3,7 @@ package com.example.gotpttk.model.dbHelper;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -23,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 19;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -92,11 +93,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     @Override
+    public void onConfigure(SQLiteDatabase db)
+    {
+        db.setForeignKeyConstraintsEnabled(true);
+    }
+
+    @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1)
     {
         // Dropping and creating tables
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SPOT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SECTION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SPOT);
 
         onCreate(db);
     }
@@ -130,9 +137,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean deleteSpot(long spot_id)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        long delete = db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
-                new String[] { String.valueOf(spot_id) });
-        return delete != 0;
+        try
+        {
+            db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
+                    new String[] { String.valueOf(spot_id) });
+            return true;
+        }
+        catch (SQLiteConstraintException e)
+        {
+            return false;
+        }
     }
 
     public Spot getSpot(long spot_id)
@@ -149,7 +163,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
             if(c.isNull(c.getColumnIndex(COLUMN_SPOT_HEIGHT))){
                 spot.setHeight(null);
             }
-            else{
+            else
+            {
                 spot.setHeight(c.getInt(c.getColumnIndex(COLUMN_SPOT_HEIGHT)));
             }
             spot.setDesc(c.getString(c.getColumnIndex(COLUMN_SPOT_DESC)));

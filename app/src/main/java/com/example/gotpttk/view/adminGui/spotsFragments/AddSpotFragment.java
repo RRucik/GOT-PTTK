@@ -44,8 +44,7 @@ public class AddSpotFragment extends Fragment
                 String desc = etSpotDesc.getText().toString();
                 Integer heightAsInt = null;
 
-                try
-                {
+
                     // Repairing strings
                     if (name.isEmpty())
                     {
@@ -72,11 +71,8 @@ public class AddSpotFragment extends Fragment
                     {
                         Toast.makeText(view.getContext(), "Nie można dodać punktu - niektóre wymagane pola nie wypełnione lub istenie punkt o podanej nazwie", Toast.LENGTH_SHORT).show();
                     }
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
-                }
+
+
             }
         });
         return view;
