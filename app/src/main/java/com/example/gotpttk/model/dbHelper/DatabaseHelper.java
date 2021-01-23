@@ -10,8 +10,12 @@ import android.util.Log;
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -390,6 +394,24 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 sections.add(section);
             } while (c.moveToNext());
         }
+
+        if(active_since != null){
+            final SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyy", Locale.ENGLISH);
+            List<Section> sections_with_date = new ArrayList<>();
+            for(Section section : sections){
+                try {
+                    Date d1 =sdformat.parse(section.getActiveSince());
+                    Date d2 = sdformat.parse(active_since);
+                    if(d1.compareTo(d2) >= 0){
+                        sections_with_date.add(section);
+                    }
+                } catch (ParseException e) {
+                    return sections;
+                }
+            }
+            return sections_with_date;
+        }
+
         return sections;
     }
 
@@ -428,6 +450,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 sections.add(section);
             } while (c.moveToNext());
         }
+
         return sections;
     }
 
