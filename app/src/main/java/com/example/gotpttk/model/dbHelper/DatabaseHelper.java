@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 20;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -95,6 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     @Override
     public void onConfigure(SQLiteDatabase db)
     {
+        super.onConfigure(db);
         db.setForeignKeyConstraintsEnabled(true);
     }
 
