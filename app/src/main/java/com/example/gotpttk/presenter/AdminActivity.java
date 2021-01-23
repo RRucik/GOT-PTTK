@@ -1,4 +1,4 @@
-package com.example.gotpttk;
+package com.example.gotpttk.presenter;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,20 +10,22 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.gotpttk.R;
 import com.example.gotpttk.view.adminGui.accountFragments.AccountDetailsFragment;
 import com.example.gotpttk.view.adminGui.sectionsFragments.SectionsManagementFragment;
 import com.example.gotpttk.view.adminGui.spotsFragments.SpotsManagementFragment;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
+
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_admin);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Informacje o koncie");

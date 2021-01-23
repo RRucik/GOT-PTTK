@@ -1,4 +1,4 @@
-package com.example.gotpttk.view.adminGui.sectionsFragments;
+package com.example.gotpttk.view.guestGui.searchSectionsFragments;
 
 import android.os.Bundle;
 
@@ -16,16 +16,15 @@ import android.widget.Toast;
 import com.example.gotpttk.R;
 import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
-import com.example.gotpttk.model.dbModels.Spot;
 import com.example.gotpttk.model.sectionModels.SectionListViewAdapter;
-import com.example.gotpttk.model.spotModels.SpotListViewAdapter;
-import com.example.gotpttk.view.adminGui.spotsFragments.EditChosenSpotFragment;
+import com.example.gotpttk.view.adminGui.sectionsFragments.EditChosenSectionFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditSectionFragment extends Fragment
+
+public class SearchSectionsFragment extends Fragment
 {
     List<Section> sections = new ArrayList<>();
     EditText etSectionStart;
@@ -39,8 +38,8 @@ public class EditSectionFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        final View view = inflater.inflate(R.layout.fragment_edit_section, container, false);
-        Button editSearch = (Button) view.findViewById(R.id.buttonEditSearchSection);
+        final View view = inflater.inflate(R.layout.fragment_search_sections, container, false);
+        Button editSearch = (Button) view.findViewById(R.id.buttonSearchSection);
         etSectionStart = view.findViewById(R.id.editTextStartingSpot);
         etSectionEnd = view.findViewById(R.id.editTextEndingSpot);
         etSectionLength = view.findViewById(R.id.editTextMinLength);
@@ -103,23 +102,12 @@ public class EditSectionFragment extends Fragment
 
                 sections = databaseHelper.getFilteredSections(start, end, lengthAsInt, mountain, pointsAsInt, active);
 
-                if(sections.isEmpty())
-                {
+                if(sections.isEmpty()){
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     ListView listview = (ListView)view.findViewById(R.id.listViewEditSectionSearch);
                     listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Bundle passId = new Bundle();
-                            passId.putLong("id", id);
-                            EditChosenSectionFragment fragment = new EditChosenSectionFragment();
-                            fragment.setArguments(passId);
-                            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-                        }
-                    });
                 }
             }
         });

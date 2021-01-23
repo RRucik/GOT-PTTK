@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -333,19 +333,20 @@ public class DatabaseHelper extends SQLiteOpenHelper
         int start_point_id;
         int end_point_id;
 
+        Spot spotStart = getSpotWithName(start_point_name);
+        Spot spotEnd = getSpotWithName(end_point_name);
+
         // Bierzemy mountain range bo tylko on może mieć wartość "" jeżeli pole wyszukiwania było puste
         String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
                 + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'";
 
-        if(start_point_name != null)
+        if(start_point_name != null && spotStart != null)
         {
-            Spot spotStart = getSpotWithName(start_point_name);
             start_point_id = spotStart.getIdSp();
             selectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + start_point_id;
         }
-        if(end_point_name != null)
+        if(end_point_name != null && spotEnd != null)
         {
-            Spot spotEnd = getSpotWithName(end_point_name);
             end_point_id = spotEnd.getIdSp();
             selectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + end_point_id;
         }
@@ -360,9 +361,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
+        Log.e(LOG, selectQuery);
 
         // looping through all rows and adding to list
-        if (c != null && c.moveToFirst())
+        if (c != null && c.moveToFirst() && (spotStart != null || start_point_name == null) && (spotEnd != null || end_point_name == null))
         {
             do
             {

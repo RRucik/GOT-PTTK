@@ -35,4 +35,10 @@
     <string name="min_points_text">Min. punktacja</string>
     <string name="edit_section_data_text">Dane edytowanego odcinka</string>
     <string name="remove_section_data_text">Dane usuwanego odcinka</string>
+    <string name="login">Logowanie</string>
+    <string name="login_button_text">Zaloguj jako admin</string>
+    <string name="logout_button_text">Wyloguj</string>
+    <string name="search_sections">Przeglądaj odcinki</string>
+    <string name="plan_travel_route">Planuj wycieczkę</string>
+    <string name="logged_as_admin_text">Zalogowano jako admin</string>
 </resources>

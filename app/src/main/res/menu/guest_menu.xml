@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_search_sections"
+            android:icon="@drawable/ic_spot"
+            android:title="@string/search_sections"
+            />
+        <item
+            android:id="@+id/nav_plan_travel_route"
+            android:icon="@drawable/ic_section"
+            android:title="@string/plan_travel_route"/>
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_account"
+            android:title="@string/login"/>
+    </group>
+
+</menu>

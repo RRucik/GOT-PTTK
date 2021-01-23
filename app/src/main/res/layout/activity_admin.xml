@@ -22,7 +22,7 @@
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:elevation="4dp">
-            
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
@@ -48,6 +48,6 @@
         app:itemIconTint="@drawable/nav_item_text_icon_color"
         app:itemBackground="@drawable/nav_item_background_color"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/guest_menu" />
+        app:menu="@menu/admin_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
