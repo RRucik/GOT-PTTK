@@ -10,7 +10,10 @@ import android.util.Log;
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper
@@ -19,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -324,6 +327,70 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return section;
         }
         return null;
+    }
+
+    public List<Section> getFilteredSections(String start_point_name, String end_point_name, Integer min_length, String mountains_range, Integer min_points, String active_since)
+    {
+        List<Section> sections = new ArrayList<Section>();
+        int start_point_id;
+        int end_point_id;
+
+        // Bierzemy mountain range bo tylko on może mieć wartość "" jeżeli pole wyszukiwania było puste
+        String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
+                + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'";
+
+        if(start_point_name != null)
+        {
+            Spot spotStart = getSpotWithName(start_point_name);
+            start_point_id = spotStart.getIdSp();
+            selectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + start_point_id;
+        }
+        if(end_point_name != null)
+        {
+            Spot spotEnd = getSpotWithName(end_point_name);
+            end_point_id = spotEnd.getIdSp();
+            selectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + end_point_id;
+        }
+        if(min_length != null)
+        {
+            selectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
+        }
+        if(min_points != null)
+        {
+            selectQuery += " AND (" + COLUMN_SECTION_POINTS + " >= " + min_points + " OR " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points + ")";
+        }
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.moveToFirst())
+        {
+            do
+            {
+                Section section = new Section();
+                section.setIdSe(c.getInt(c.getColumnIndex(COLUMN_SECTION_ID)));
+                section.setIdSpStart(c.getInt(c.getColumnIndex(COLUMN_SECTION_START_SPOT_ID)));
+                section.setIdSpEnd(c.getInt(c.getColumnIndex(COLUMN_SECTION_END_SPOT_ID)));
+                section.setLength(c.getInt(c.getColumnIndex(COLUMN_SECTION_LENGTH)));
+                section.setMountainRange(c.getString(c.getColumnIndex(COLUMN_SECTION_MOUNTAIN_RANGE)));
+                section.setPointsTo(c.getInt(c.getColumnIndex(COLUMN_SECTION_POINTS)));
+                if(c.isNull(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)))
+                {
+                    section.setPointsFrom(null);
+                }
+                else
+                {
+                    section.setPointsFrom(c.getInt(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)));
+                }
+                section.setHeightDiff(c.getInt(c.getColumnIndex(COLUMN_SECTION_HEIGHT_DIFF)));
+                section.setActiveSince(c.getString(c.getColumnIndex(COLUMN_SECTION_ACTIVE_SINCE)));
+                section.setDesc(c.getString(c.getColumnIndex(COLUMN_SECTION_DESC)));
+                section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
+                sections.add(section);
+            } while (c.moveToNext());
+        }
+        return sections;
     }
 
     public List<Section> getAllSections()

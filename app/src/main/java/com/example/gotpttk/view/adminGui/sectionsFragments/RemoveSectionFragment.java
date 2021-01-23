@@ -84,9 +84,9 @@ public class RemoveSectionFragment extends Fragment
                     if(end.isEmpty()){
                         end = null;
                     }
-                    if(mountain.isEmpty()){
-                        mountain = null;
-                    }
+//                    if(mountain.isEmpty()){
+//                        mountain = null;
+//                    }
                 }
                 catch(Exception e){
                     Toast.makeText(view.getContext(), "Nie można wyszukać odcinków - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
@@ -95,7 +95,7 @@ public class RemoveSectionFragment extends Fragment
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
-                sections = databaseHelper.getAllSections();
+                sections = databaseHelper.getFilteredSections(start, end, lengthAsInt, mountain, pointsAsInt, active);
 
                 if(sections.isEmpty()){
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();

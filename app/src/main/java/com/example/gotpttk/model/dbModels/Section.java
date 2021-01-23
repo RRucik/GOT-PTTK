@@ -22,7 +22,6 @@ public class Section {
 
     public Section(Integer idSpStart, Integer idSpEnd, Integer length, String mountainRange, Integer pointsTo, Integer pointsFrom, String activeSince, String desc, Integer heightDiff)
     {
-        this.idSe = idSe;
         this.idSpStart = idSpStart;
         this.idSpEnd = idSpEnd;
         this.length = length;

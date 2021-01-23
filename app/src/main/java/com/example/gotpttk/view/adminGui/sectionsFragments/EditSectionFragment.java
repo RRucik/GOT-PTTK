@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.gotpttk.R;
 import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
+import com.example.gotpttk.model.dbModels.Spot;
 import com.example.gotpttk.model.sectionModels.SectionListViewAdapter;
 import com.example.gotpttk.model.spotModels.SpotListViewAdapter;
 import com.example.gotpttk.view.adminGui.spotsFragments.EditChosenSpotFragment;
@@ -70,7 +71,8 @@ public class EditSectionFragment extends Fragment
                     if(active.isEmpty()){
                         active = null;
                     }
-                    else{
+                    else
+                    {
                         SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
                         if(sdformat.parse(active) == null){
                             Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
@@ -84,9 +86,13 @@ public class EditSectionFragment extends Fragment
                     if(end.isEmpty()){
                         end = null;
                     }
-                    if(mountain.isEmpty()){
-                        mountain = null;
-                    }
+//                    if(mountain.isEmpty())
+//                    {
+//                        mountain = null;
+//                    }
+
+                    DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
+
                 }
                 catch(Exception e){
                     Toast.makeText(view.getContext(), "Nie można wyszukać odcinków - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
@@ -95,7 +101,7 @@ public class EditSectionFragment extends Fragment
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
-                sections = databaseHelper.getAllSections();
+                sections = databaseHelper.getFilteredSections(start, end, lengthAsInt, mountain, pointsAsInt, active);
 
                 if(sections.isEmpty()){
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
