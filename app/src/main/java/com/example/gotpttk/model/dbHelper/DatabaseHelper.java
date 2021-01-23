@@ -10,10 +10,7 @@ import android.util.Log;
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper
@@ -22,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 12;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -57,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + COLUMN_SPOT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_SPOT_NAME + " TEXT NOT NULL UNIQUE,"
             + COLUMN_SPOT_HEIGHT + " INTEGER,"
-            + COLUMN_SPOT_DESC + " TEXT)";
+            + COLUMN_SPOT_DESC + " TEXT);";
 
     // CREATE TABLE SECTION statement
     private static final String CREATE_TABLE_SECTION = "CREATE TABLE "
@@ -73,8 +70,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
             + COLUMN_SECTION_ACTIVE_SINCE + " TEXT NOT NULL,"
             + COLUMN_SECTION_DESC + " TEXT,"
             + COLUMN_SECTION_OPEN + " INTEGER NOT NULL,"
-            + " FOREIGN KEY ("+COLUMN_SECTION_START_SPOT_ID+") REFERENCES "+TABLE_SPOT+"("+COLUMN_SPOT_ID+"),"
-            + " FOREIGN KEY ("+COLUMN_SECTION_END_SPOT_ID+") REFERENCES "+TABLE_SPOT+"("+COLUMN_SPOT_ID+"));";
+            + " FOREIGN KEY (" + COLUMN_SECTION_START_SPOT_ID + ") REFERENCES "+ TABLE_SPOT + "("+ COLUMN_SPOT_ID + "),"
+            + " FOREIGN KEY (" + COLUMN_SECTION_END_SPOT_ID + ") REFERENCES " + TABLE_SPOT + "(" + COLUMN_SPOT_ID + "));";
 
     public DatabaseHelper(Context context)
     {
@@ -85,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public void onCreate(SQLiteDatabase db)
     {
         // Creating tables
+        Log.e(LOG, CREATE_TABLE_SECTION);
         db.execSQL(CREATE_TABLE_SPOT);
         db.execSQL(CREATE_TABLE_SECTION);
     }
