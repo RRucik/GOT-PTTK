@@ -63,7 +63,7 @@ public class RemoveChosenSectionFragment extends Fragment
             @Override
             public void onClick(View view) {
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-                databaseHelper.deleteSpot(SectionId);
+                databaseHelper.deleteSection(SectionId);
                 Toast.makeText(view.getContext(), "Odcinek pomyślnie usunięty", Toast.LENGTH_SHORT).show();
             }
         });
