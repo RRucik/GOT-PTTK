@@ -39,8 +39,8 @@ public class EditSectionFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        final View view = inflater.inflate(R.layout.fragment_edit_section, container, false);
-        Button editSearch = (Button) view.findViewById(R.id.buttonEditSearchSection);
+        final View view = inflater.inflate(R.layout.fragment_filter_section, container, false);
+        Button editSearch = (Button) view.findViewById(R.id.buttonSearchSection);
         etSectionStart = view.findViewById(R.id.editTextStartingSpot);
         etSectionEnd = view.findViewById(R.id.editTextEndingSpot);
         etSectionLength = view.findViewById(R.id.editTextMinLength);
@@ -108,7 +108,7 @@ public class EditSectionFragment extends Fragment
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewEditSectionSearch);
+                    ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
                     listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

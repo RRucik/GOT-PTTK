@@ -140,13 +140,14 @@
         android:layout_marginTop="10dp"
         android:background="@color/grey_edit_text"
         android:ems="10"
+        android:inputType="date"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toEndOf="@+id/editTextMinPoints"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMinPoints" />
 
     <Button
-        android:id="@+id/buttonEditSearchSection"
+        android:id="@+id/buttonSearchSection"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -173,10 +174,10 @@
         android:background="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEditSearchSection" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearchSection" />
 
     <ListView
-        android:id="@+id/listViewEditSectionSearch"
+        android:id="@+id/listViewSearchSection"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

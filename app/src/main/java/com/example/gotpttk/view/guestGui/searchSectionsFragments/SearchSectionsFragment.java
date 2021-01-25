@@ -38,7 +38,7 @@ public class SearchSectionsFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        final View view = inflater.inflate(R.layout.fragment_search_sections, container, false);
+        final View view = inflater.inflate(R.layout.fragment_filter_section, container, false);
         Button editSearch = (Button) view.findViewById(R.id.buttonSearchSection);
         etSectionStart = view.findViewById(R.id.editTextStartingSpot);
         etSectionEnd = view.findViewById(R.id.editTextEndingSpot);
@@ -106,7 +106,7 @@ public class SearchSectionsFragment extends Fragment
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewEditSectionSearch);
+                    ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
                     listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
                 }
             }

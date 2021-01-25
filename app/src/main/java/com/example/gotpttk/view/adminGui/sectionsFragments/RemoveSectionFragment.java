@@ -38,8 +38,8 @@ public class RemoveSectionFragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_remove_section, container, false);
-        Button removeSearch = (Button) view.findViewById(R.id.buttonRemoveSearchSection);
+        final View view = inflater.inflate(R.layout.fragment_filter_section, container, false);
+        Button removeSearch = (Button) view.findViewById(R.id.buttonSearchSection);
         etSectionStart = view.findViewById(R.id.editTextStartingSpot);
         etSectionEnd = view.findViewById(R.id.editTextEndingSpot);
         etSectionLength = view.findViewById(R.id.editTextMinLength);
@@ -101,7 +101,7 @@ public class RemoveSectionFragment extends Fragment
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewRemoveSectionSearch);
+                    ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
                     listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

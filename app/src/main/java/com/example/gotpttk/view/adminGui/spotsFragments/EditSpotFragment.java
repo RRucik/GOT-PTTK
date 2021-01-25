@@ -32,10 +32,10 @@ public class EditSpotFragment extends Fragment
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,
                              Bundle savedInstanceState)
     {
-        final View view = inflater.inflate(R.layout.fragment_edit_spot, container, false);
-        editSearch = (Button) view.findViewById(R.id.buttonEditSearchSpot);
-        etSpotNameFilter = view.findViewById(R.id.editTextEditSearchSpotName);
-        etSpotHeightFilter = view.findViewById(R.id.editTextEditSearchSpotHeight);
+        final View view = inflater.inflate(R.layout.fragment_filter_spot, container, false);
+        editSearch = (Button) view.findViewById(R.id.buttonSearchSpot);
+        etSpotNameFilter = view.findViewById(R.id.editTextSearchSpotName);
+        etSpotHeightFilter = view.findViewById(R.id.editTextSearchSpotHeight);
         editSearch.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -71,7 +71,7 @@ public class EditSpotFragment extends Fragment
                     Toast.makeText(getContext(), "Brak punktów spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewEditSpotSearch);
+                    ListView listview = (ListView)view.findViewById(R.id.listViewSpotSearch);
                     listview.setAdapter(new SpotListViewAdapter(getActivity(), spots));
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/textViewEditSearchSpotName"
+        android:id="@+id/textViewSearchSpotName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="67dp"
@@ -17,13 +17,13 @@
         android:layout_marginBottom="10dp"
         android:text="@string/spot_name_text"
         android:textColor="@color/colorBlack"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEditSearchSpotName"
-        app:layout_constraintEnd_toStartOf="@+id/textViewEditSearchSpotHeight"
+        app:layout_constraintBottom_toTopOf="@+id/editTextSearchSpotName"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSearchSpotHeight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewEditSearchSpotHeight"
+        android:id="@+id/textViewSearchSpotHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -32,13 +32,13 @@
         android:layout_marginBottom="10dp"
         android:text="@string/spot_height_text"
         android:textColor="@color/colorBlack"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEditSearchSpotHeight"
+        app:layout_constraintBottom_toTopOf="@+id/editTextSearchSpotName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewEditSearchSpotName"
+        app:layout_constraintStart_toEndOf="@+id/textViewSearchSpotName"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextEditSearchSpotHeight"
+        android:id="@+id/editTextSearchSpotHeight"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginTop="10dp"
@@ -48,10 +48,10 @@
         android:inputType="number"
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEditSearchSpotHeight" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearchSpotHeight" />
 
     <EditText
-        android:id="@+id/editTextEditSearchSpotName"
+        android:id="@+id/editTextSearchSpotName"
         android:layout_width="180dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
@@ -60,10 +60,10 @@
         android:ems="10"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEditSearchSpotName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSearchSpotName" />
 
     <Button
-        android:id="@+id/buttonEditSearchSpot"
+        android:id="@+id/buttonSearchSpot"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
@@ -74,7 +74,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEditSearchSpotHeight" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSearchSpotHeight" />
 
     <View
         android:id="@+id/view"
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEditSearchSpot" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearchSpot" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -98,7 +98,7 @@
         android:contentDescription="@string/mountains_bottom_text" />
 
     <ListView
-        android:id="@+id/listViewEditSpotSearch"
+        android:id="@+id/listViewSpotSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"

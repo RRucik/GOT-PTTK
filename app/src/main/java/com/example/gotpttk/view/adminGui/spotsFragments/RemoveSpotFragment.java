@@ -31,10 +31,10 @@ public class RemoveSpotFragment extends Fragment
                              Bundle savedInstanceState)
     {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_remove_spot, container, false);
-        removeSearch = (Button) view.findViewById(R.id.buttonRemoveSearchSpot);
-        etSpotNameFilter = view.findViewById(R.id.editTextRemoveSearchSpotName);
-        etSpotHeightFilter = view.findViewById(R.id.editTextRemoveSearchSpotHeight);
+        final View view = inflater.inflate(R.layout.fragment_filter_spot, container, false);
+        removeSearch = (Button) view.findViewById(R.id.buttonSearchSpot);
+        etSpotNameFilter = view.findViewById(R.id.editTextSearchSpotName);
+        etSpotHeightFilter = view.findViewById(R.id.editTextSearchSpotHeight);
         removeSearch.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -64,7 +64,7 @@ public class RemoveSpotFragment extends Fragment
                     Toast.makeText(getContext(), "Brak punktów spełniających kryteria", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewRemoveSpotSearch);
+                    ListView listview = (ListView)view.findViewById(R.id.listViewSpotSearch);
                     listview.setAdapter(new SpotListViewAdapter(getActivity(), spots));
                     listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
