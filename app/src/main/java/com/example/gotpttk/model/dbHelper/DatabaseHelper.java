@@ -413,6 +413,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         if(active_since != null){
             final SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyy", Locale.ENGLISH);
+            /*
             List<Section> sections_with_date = new ArrayList<>();
             for(Section section : sections){
                 try {
@@ -426,6 +427,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 }
             }
             return sections_with_date;
+            */
+            sections.removeIf(section -> {
+                try {
+                    return sdformat.parse(section.getActiveSince()).compareTo(sdformat.parse(active_since)) < 0;
+                } catch (ParseException e) {
+                    return false;
+                }
+            });
         }
 
         return sections;
