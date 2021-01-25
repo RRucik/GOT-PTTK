@@ -60,22 +60,20 @@ public class RemoveSpotFragment extends Fragment
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                 spots = databaseHelper.getFilteredSpots(name, heightAsInt);
+                ListView listview = (ListView)view.findViewById(R.id.listViewSpotSearch);
+                listview.setAdapter(new SpotListViewAdapter(getActivity(), spots));
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Bundle passId = new Bundle();
+                        passId.putLong("id", (int)id);
+                        RemoveChosenSpotFragment fragment = new RemoveChosenSpotFragment();
+                        fragment.setArguments(passId);
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    }
+                });
                 if(spots.isEmpty()){
                     Toast.makeText(getContext(), "Brak punktów spełniających kryteria", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewSpotSearch);
-                    listview.setAdapter(new SpotListViewAdapter(getActivity(), spots));
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Bundle passId = new Bundle();
-                            passId.putLong("id", (int)id);
-                            RemoveChosenSpotFragment fragment = new RemoveChosenSpotFragment();
-                            fragment.setArguments(passId);
-                            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-                        }
-                    });
                 }
             }
         });

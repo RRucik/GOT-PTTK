@@ -101,13 +101,10 @@ public class SearchSectionsFragment extends Fragment
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
                 sections = databaseHelper.getFilteredSections(start, end, lengthAsInt, mountain, pointsAsInt, active);
-
+                ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
+                listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
                 if(sections.isEmpty()){
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
-                    listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
                 }
             }
         });

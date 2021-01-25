@@ -102,24 +102,21 @@ public class EditSectionFragment extends Fragment
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
                 sections = databaseHelper.getFilteredSections(start, end, lengthAsInt, mountain, pointsAsInt, active);
-
+                ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
+                listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
+                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Bundle passId = new Bundle();
+                        passId.putLong("id", id);
+                        EditChosenSectionFragment fragment = new EditChosenSectionFragment();
+                        fragment.setArguments(passId);
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                    }
+                });
                 if(sections.isEmpty())
                 {
                     Toast.makeText(getContext(), "Brak odcinków spełniających kryteria", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    ListView listview = (ListView)view.findViewById(R.id.listViewSearchSection);
-                    listview.setAdapter(new SectionListViewAdapter(getActivity(), sections));
-                    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            Bundle passId = new Bundle();
-                            passId.putLong("id", id);
-                            EditChosenSectionFragment fragment = new EditChosenSectionFragment();
-                            fragment.setArguments(passId);
-                            getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
-                        }
-                    });
                 }
             }
         });
