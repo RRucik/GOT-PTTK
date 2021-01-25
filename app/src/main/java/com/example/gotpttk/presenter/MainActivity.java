@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
+import android.app.Fragment;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -51,13 +53,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed()
     {
+        FragmentManager fm = getSupportFragmentManager();
         // If menu is open and return button pressed, close the menu first
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
         {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        else
+        else if(fm.getBackStackEntryCount() > 0)
         {
+            getSupportActionBar().setTitle("Logowanie");
+            fm.popBackStack();
+        }
+        else{
             super.onBackPressed();
         }
     }
@@ -65,18 +72,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
     {
+        FragmentManager fm = getSupportFragmentManager();
+        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
         switch (item.getItemId())
         {
             case R.id.nav_search_sections:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SearchSectionsFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new SearchSectionsFragment()).addToBackStack("tag1").commit();
                 getSupportActionBar().setTitle("Przeglądanie odcinków");
                 break;
             case R.id.nav_plan_travel_route:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PlanRouteFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new PlanRouteFragment()).addToBackStack("tag1").commit();
                 getSupportActionBar().setTitle("Planowanie wycieczki");
                 break;
             case R.id.nav_login:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new LoginFragment()).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, new LoginFragment()).addToBackStack("tag1").commit();
                 getSupportActionBar().setTitle("Logowanie");
                 break;
         }

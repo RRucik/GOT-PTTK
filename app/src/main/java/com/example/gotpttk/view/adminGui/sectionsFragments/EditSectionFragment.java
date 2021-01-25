@@ -111,7 +111,7 @@ public class EditSectionFragment extends Fragment
                         passId.putLong("id", id);
                         EditChosenSectionFragment fragment = new EditChosenSectionFragment();
                         fragment.setArguments(passId);
-                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack("tag3").commit();
                     }
                 });
                 if(sections.isEmpty())

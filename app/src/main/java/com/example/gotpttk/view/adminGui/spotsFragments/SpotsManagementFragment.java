@@ -2,6 +2,7 @@ package com.example.gotpttk.view.adminGui.spotsFragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -27,7 +28,8 @@ public class SpotsManagementFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddSpotFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddSpotFragment()).addToBackStack("tag2").commit();
+                ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("Dodaj punkt");
             }
         });
         editButton.setOnClickListener(new View.OnClickListener()
@@ -35,7 +37,8 @@ public class SpotsManagementFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditSpotFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditSpotFragment()).addToBackStack("tag2").commit();
+                ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("Edytuj punkt");
             }
         });
         removeButton.setOnClickListener(new View.OnClickListener()
@@ -43,7 +46,8 @@ public class SpotsManagementFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new RemoveSpotFragment()).commit();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new RemoveSpotFragment()).addToBackStack("tag2").commit();
+                ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("Usuń punkt");
             }
         });
         return view;

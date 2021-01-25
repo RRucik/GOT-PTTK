@@ -76,7 +76,7 @@ public class EditSpotFragment extends Fragment
                         passId.putLong("id", id);
                         EditChosenSpotFragment fragment = new EditChosenSpotFragment();
                         fragment.setArguments(passId);
-                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack("tag3").commit();
                     }
                 });
                 if(spots.isEmpty()){
