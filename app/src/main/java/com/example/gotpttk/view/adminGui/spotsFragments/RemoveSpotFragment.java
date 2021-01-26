@@ -77,6 +77,7 @@ public class RemoveSpotFragment extends Fragment
                 }
             }
         });
+        setRetainInstance(true);
         return view;
     }
 }

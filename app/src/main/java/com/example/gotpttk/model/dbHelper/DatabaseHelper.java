@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
+import com.example.gotpttk.model.sectionModels.SectionWithDirection;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -462,6 +463,80 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
 
         return sections;
+    }
+
+    public List<SectionWithDirection> getSectionsFromPoint(long id){
+        List<SectionWithDirection> sectionsWithDirection = new ArrayList<>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE " +
+                COLUMN_SECTION_START_SPOT_ID + "=" + id;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.moveToFirst())
+        {
+            do
+            {
+                Section section = new Section();
+                section.setIdSe(c.getInt(c.getColumnIndex(COLUMN_SECTION_ID)));
+                section.setIdSpStart(c.getInt(c.getColumnIndex(COLUMN_SECTION_START_SPOT_ID)));
+                section.setIdSpEnd(c.getInt(c.getColumnIndex(COLUMN_SECTION_END_SPOT_ID)));
+                section.setLength(c.getInt(c.getColumnIndex(COLUMN_SECTION_LENGTH)));
+                section.setMountainRange(c.getString(c.getColumnIndex(COLUMN_SECTION_MOUNTAIN_RANGE)));
+                section.setPointsTo(c.getInt(c.getColumnIndex(COLUMN_SECTION_POINTS)));
+                if(c.isNull(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)))
+                {
+                    section.setPointsFrom(null);
+                }
+                else
+                {
+                    section.setPointsFrom(c.getInt(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)));
+                }
+                section.setHeightDiff(c.getInt(c.getColumnIndex(COLUMN_SECTION_HEIGHT_DIFF)));
+                section.setActiveSince(c.getString(c.getColumnIndex(COLUMN_SECTION_ACTIVE_SINCE)));
+                section.setDesc(c.getString(c.getColumnIndex(COLUMN_SECTION_DESC)));
+                section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
+                sectionsWithDirection.add(new SectionWithDirection(section, false));
+            } while (c.moveToNext());
+        }
+
+        selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE " +
+                COLUMN_SECTION_RETURN_POINTS + " IS NOT NULL AND " +
+                COLUMN_SECTION_END_SPOT_ID + "=" + id;
+
+        c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c != null && c.moveToFirst())
+        {
+            do
+            {
+                Section section = new Section();
+                section.setIdSe(c.getInt(c.getColumnIndex(COLUMN_SECTION_ID)));
+                section.setIdSpStart(c.getInt(c.getColumnIndex(COLUMN_SECTION_START_SPOT_ID)));
+                section.setIdSpEnd(c.getInt(c.getColumnIndex(COLUMN_SECTION_END_SPOT_ID)));
+                section.setLength(c.getInt(c.getColumnIndex(COLUMN_SECTION_LENGTH)));
+                section.setMountainRange(c.getString(c.getColumnIndex(COLUMN_SECTION_MOUNTAIN_RANGE)));
+                section.setPointsTo(c.getInt(c.getColumnIndex(COLUMN_SECTION_POINTS)));
+                if(c.isNull(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)))
+                {
+                    section.setPointsFrom(null);
+                }
+                else
+                {
+                    section.setPointsFrom(c.getInt(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)));
+                }
+                section.setHeightDiff(c.getInt(c.getColumnIndex(COLUMN_SECTION_HEIGHT_DIFF)));
+                section.setActiveSince(c.getString(c.getColumnIndex(COLUMN_SECTION_ACTIVE_SINCE)));
+                section.setDesc(c.getString(c.getColumnIndex(COLUMN_SECTION_DESC)));
+                section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
+                sectionsWithDirection.add(new SectionWithDirection(section, true));
+            } while (c.moveToNext());
+        }
+
+        return sectionsWithDirection;
     }
 
     public void closeDB()

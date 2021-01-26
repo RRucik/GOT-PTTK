@@ -41,4 +41,7 @@
     <string name="search_sections">Przeglądaj odcinki</string>
     <string name="plan_travel_route">Planuj wycieczkę</string>
     <string name="logged_as_admin_text">Zalogowano jako admin</string>
+    <string name="go_back_text">Cofnij</string>
+    <string name="finish_text">Zakończ</string>
+    <string name="end_in_text">Koniec w:</string>
 </resources>

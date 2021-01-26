@@ -120,6 +120,7 @@ public class EditSectionFragment extends Fragment
                 }
             }
         });
+        setRetainInstance(true);
         return view;
     }
 }

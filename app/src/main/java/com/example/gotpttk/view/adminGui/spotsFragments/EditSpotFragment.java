@@ -84,6 +84,7 @@ public class EditSpotFragment extends Fragment
                 }
             }
         });
+        setRetainInstance(true);
         return view;
     }
 }

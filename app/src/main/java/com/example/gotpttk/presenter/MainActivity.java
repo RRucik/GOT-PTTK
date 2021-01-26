@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        else if(fm.getBackStackEntryCount() > 0)
+        else if(fm.getBackStackEntryCount() == 1)
         {
             getSupportActionBar().setTitle("Logowanie");
             NavigationView navigationView = findViewById(R.id.nav_view);

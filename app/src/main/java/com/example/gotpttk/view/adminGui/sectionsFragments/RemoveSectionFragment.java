@@ -113,6 +113,7 @@ public class RemoveSectionFragment extends Fragment
                 }
             }
         });
+        setRetainInstance(true);
         return view;
     }
 }
