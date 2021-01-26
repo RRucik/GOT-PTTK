@@ -8,9 +8,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.gotpttk.R;
 import com.example.gotpttk.view.adminGui.accountFragments.AccountDetailsFragment;
@@ -39,7 +42,13 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_open, R.string.menu_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_open, R.string.menu_close){
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset){
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(drawerView.getWindowToken(), 0);
+            }
+        };
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -63,16 +72,20 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         }
         else if(fm.getBackStackEntryCount() > 0)
         {
+            NavigationView navigationView = findViewById(R.id.nav_view);
             if(fm.getBackStackEntryCount() == 1){
                 getSupportActionBar().setTitle("Informacje o koncie");
+                navigationView.setCheckedItem(R.id.nav_account);
             }
             else if(fm.getBackStackEntryCount() == 2){
                 Fragment fragment = fm.findFragmentByTag("tag2");
                 if(fragment instanceof EditSpotFragment || fragment instanceof RemoveSpotFragment || fragment instanceof AddSpotFragment){
                     getSupportActionBar().setTitle("Zarządzanie punktami");
+                    navigationView.setCheckedItem(R.id.nav_manage_spots);
                 }
                 else{
                     getSupportActionBar().setTitle("Zarządzanie odcinkami");
+                    navigationView.setCheckedItem(R.id.nav_manage_sections);
                 }
             }
             fm.popBackStack();

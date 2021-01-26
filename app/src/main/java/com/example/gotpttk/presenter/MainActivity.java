@@ -7,10 +7,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.gotpttk.R;
 import com.example.gotpttk.view.adminGui.accountFragments.AccountDetailsFragment;
@@ -37,7 +40,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_open, R.string.menu_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.menu_open, R.string.menu_close){
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset){
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(drawerView.getWindowToken(), 0);
+            }
+        };
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -62,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if(fm.getBackStackEntryCount() > 0)
         {
             getSupportActionBar().setTitle("Logowanie");
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            navigationView.setCheckedItem(R.id.nav_login);
             fm.popBackStack();
         }
         else{
@@ -76,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
+
         switch (item.getItemId())
         {
             case R.id.nav_search_sections:
