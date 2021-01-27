@@ -7,25 +7,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.gotpttk.R;
 import com.example.gotpttk.model.dbHelper.DatabaseHelper;
-import com.example.gotpttk.model.sectionModels.RouteListViewAdapter;
+import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.sectionModels.SectionWithDirection;
-import com.example.gotpttk.model.sectionModels.SectionWithDirectionListViewAdapter;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DisplayRouteFragment#newInstance} factory method to
+ * Use the {@link LastSectionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DisplayRouteFragment extends Fragment {
+public class LastSectionFragment extends Fragment {
 
-    List<SectionWithDirection> sections;
+    SectionWithDirection section;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,13 +32,12 @@ public class DisplayRouteFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public DisplayRouteFragment() {
+    public LastSectionFragment() {
         // Required empty public constructor
     }
 
-    public DisplayRouteFragment(List<SectionWithDirection> sections) {
-        // Required empty public constructor
-        this.sections = sections;
+    public LastSectionFragment(SectionWithDirection section){
+        this.section = section;
     }
 
     /**
@@ -51,11 +46,11 @@ public class DisplayRouteFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DisplayRouteFragment.
+     * @return A new instance of fragment LastSectionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DisplayRouteFragment newInstance(String param1, String param2) {
-        DisplayRouteFragment fragment = new DisplayRouteFragment();
+    public static LastSectionFragment newInstance(String param1, String param2) {
+        LastSectionFragment fragment = new LastSectionFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,27 +71,21 @@ public class DisplayRouteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_display_route, container, false);
+        View view = inflater.inflate(R.layout.fragment_last_section, container, false);
 
-        ListView listview = (ListView)view.findViewById(R.id.listViewRouteDisplay);
-        listview.setAdapter(new RouteListViewAdapter(getActivity(), sections));
+        TextView start = view.findViewById(R.id.startName);
+        TextView end = view.findViewById(R.id.endName);
 
         DatabaseHelper db = new DatabaseHelper(view.getContext());
-        TextView endPoint = view.findViewById(R.id.end_in_value);
-        if(!sections.get(sections.size()-1).getReversed()){
-            endPoint.setText(db.getSpot(sections.get(sections.size()-1).getSection().getIdSpEnd()).getName());
+
+        if(!section.getReversed()){
+            start.setText(db.getSpot(section.getSection().getIdSpStart()).getName());
+            end.setText(db.getSpot(section.getSection().getIdSpEnd()).getName());
         }
         else{
-            endPoint.setText(db.getSpot(sections.get(sections.size()-1).getSection().getIdSpStart()).getName());
+            end.setText(db.getSpot(section.getSection().getIdSpStart()).getName());
+            start.setText(db.getSpot(section.getSection().getIdSpEnd()).getName());
         }
-
-        double maxLength = 0;
-        for (SectionWithDirection swd: sections) {
-            maxLength += swd.getSection().getLength();
-        }
-        TextView length = view.findViewById(R.id.totalLength_value);
-        String lengthTextValue = Double.toString(maxLength/1000)+"km";
-        length.setText(lengthTextValue);
 
         return view;
     }

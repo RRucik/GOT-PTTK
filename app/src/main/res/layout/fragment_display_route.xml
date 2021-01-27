@@ -31,26 +31,57 @@
 
     <TextView
         android:id="@+id/end_in"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/end_in_text"
-        android:textSize="12sp"
         android:textColor="@color/colorBlack"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/totalLength"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listViewRouteDisplay" />
 
     <TextView
         android:id="@+id/end_in_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="TextView"
-        android:textSize="12sp"
         android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/totalLength_value"
+        app:layout_constraintStart_toEndOf="@+id/end_in"
+        app:layout_constraintTop_toBottomOf="@+id/listViewRouteDisplay" />
+
+    <TextView
+        android:id="@+id/totalLength"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/total_length_max"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/end_in" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/end_in" />
+
+    <TextView
+        android:id="@+id/totalLength_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="32dp"
+        android:text="TextView"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/totalLength"
+        app:layout_constraintTop_toBottomOf="@+id/end_in_value" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

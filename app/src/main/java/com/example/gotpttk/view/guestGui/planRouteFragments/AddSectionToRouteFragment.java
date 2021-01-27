@@ -31,6 +31,7 @@ public class AddSectionToRouteFragment extends Fragment {
     List<SectionWithDirection> route;
     long spotId;
     ListView listview;
+    Fragment lastFragment;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -94,12 +95,35 @@ public class AddSectionToRouteFragment extends Fragment {
             }
         });
 
+        Button goBack = (Button)view.findViewById(R.id.buttonGoBack);
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(route.size() > 0){
+                    route.remove(route.size()-1);
+
+                    if(route.size() != 0){
+                        lastFragment = new LastSectionFragment(route.get(route.size()-1));
+                        getFragmentManager().beginTransaction().replace(R.id.single_section_container, lastFragment).commit();
+                    }
+                    else{
+                        getFragmentManager().beginTransaction().remove(lastFragment).commit();
+                    }
+                }
+                else{
+                    getActivity().onBackPressed();
+                }
+            }
+        });
+
         listview = (ListView)view.findViewById(R.id.listViewRouteSections);
         listview.setAdapter(new SectionWithDirectionListViewAdapter(getActivity(), sections));
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 route.add(sections.get(position));
+                lastFragment = new LastSectionFragment(sections.get(position));
+                getFragmentManager().beginTransaction().replace(R.id.single_section_container, lastFragment).commit();
                 if(!route.get(route.size()-1).getReversed()){
                     sections = databaseHelper.getSectionsFromPoint(route.get(route.size()-1).getSection().getIdSpEnd());
                 }

@@ -44,4 +44,7 @@
     <string name="go_back_text">Cofnij</string>
     <string name="finish_text">Zakończ</string>
     <string name="end_in_text">Koniec w:</string>
+    <string name="total_length_max">Całkowita długość:</string>
+    <string name="start_in_text">Początek:</string>
+    <string name="end_text">Koniec:</string>
 </resources>
