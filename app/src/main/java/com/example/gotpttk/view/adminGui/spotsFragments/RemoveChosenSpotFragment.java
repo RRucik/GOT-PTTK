@@ -50,6 +50,7 @@ public class RemoveChosenSpotFragment extends Fragment
                 if (success)
                 {
                     Toast.makeText(view.getContext(), "Punkt pomyślnie usunięty", Toast.LENGTH_SHORT).show();
+                    getActivity().onBackPressed();
                 }
                 else
                 {

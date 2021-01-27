@@ -22,6 +22,9 @@ import com.example.gotpttk.model.sectionModels.SectionWithDirection;
 public class LastSectionFragment extends Fragment {
 
     SectionWithDirection section;
+    TextView start;
+    TextView end;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,8 +76,8 @@ public class LastSectionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_last_section, container, false);
 
-        TextView start = view.findViewById(R.id.startName);
-        TextView end = view.findViewById(R.id.endName);
+        start = view.findViewById(R.id.startName);
+        end = view.findViewById(R.id.endName);
 
         DatabaseHelper db = new DatabaseHelper(view.getContext());
 
@@ -86,7 +89,7 @@ public class LastSectionFragment extends Fragment {
             end.setText(db.getSpot(section.getSection().getIdSpStart()).getName());
             start.setText(db.getSpot(section.getSection().getIdSpEnd()).getName());
         }
-
+        setRetainInstance(true);
         return view;
     }
 }

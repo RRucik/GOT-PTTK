@@ -65,6 +65,7 @@ public class RemoveChosenSectionFragment extends Fragment
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                 databaseHelper.deleteSection(SectionId);
                 Toast.makeText(view.getContext(), "Odcinek pomyślnie usunięty", Toast.LENGTH_SHORT).show();
+                getActivity().onBackPressed();
             }
         });
 

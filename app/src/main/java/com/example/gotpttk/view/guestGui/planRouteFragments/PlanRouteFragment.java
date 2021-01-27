@@ -30,6 +30,7 @@ public class PlanRouteFragment extends Fragment
     Button routeSearch;
     EditText etSpotNameFilter;
     EditText etSpotHeightFilter;
+    ListView listView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -69,9 +70,9 @@ public class PlanRouteFragment extends Fragment
 
                 DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                 spots = databaseHelper.getFilteredSpots(name, heightAsInt);
-                ListView listview = (ListView)view.findViewById(R.id.listViewSpotSearch);
-                listview.setAdapter(new SpotListViewAdapter(getActivity(), spots));
-                listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listView = (ListView)view.findViewById(R.id.listViewSpotSearch);
+                listView.setAdapter(new SpotListViewAdapter(getActivity(), spots));
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Bundle passId = new Bundle();
@@ -90,6 +91,7 @@ public class PlanRouteFragment extends Fragment
                 }
             }
         });
+        setRetainInstance(true);
         return view;
     }
 }

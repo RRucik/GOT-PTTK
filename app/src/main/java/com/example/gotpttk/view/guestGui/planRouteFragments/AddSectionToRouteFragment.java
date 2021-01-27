@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.gotpttk.R;
@@ -88,6 +89,11 @@ public class AddSectionToRouteFragment extends Fragment {
 
         listview = (ListView)view.findViewById(R.id.listViewRouteSections);
 
+        if(!route.isEmpty()){
+            lastFragment = new LastSectionFragment(route.get(route.size()-1));
+            getFragmentManager().beginTransaction().replace(R.id.single_section_container, lastFragment).commit();
+        }
+
         Button finish = (Button)view.findViewById(R.id.buttonFinish);
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +151,7 @@ public class AddSectionToRouteFragment extends Fragment {
                 listview.setAdapter(new SectionWithDirectionListViewAdapter(getActivity(), sections));
             }
         });
-
+        setRetainInstance(false);
         return view;
     }
 }
