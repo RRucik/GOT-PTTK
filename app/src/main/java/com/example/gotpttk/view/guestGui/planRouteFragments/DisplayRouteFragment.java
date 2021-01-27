@@ -81,14 +81,20 @@ public class DisplayRouteFragment extends Fragment {
         ListView listview = (ListView)view.findViewById(R.id.listViewRouteDisplay);
         listview.setAdapter(new RouteListViewAdapter(getActivity(), sections));
 
-        DatabaseHelper db = new DatabaseHelper(view.getContext());
         TextView endPoint = view.findViewById(R.id.end_in_value);
-        if(!sections.get(sections.size()-1).getReversed()){
-            endPoint.setText(db.getSpot(sections.get(sections.size()-1).getSection().getIdSpEnd()).getName());
+        if(!sections.isEmpty()){
+            DatabaseHelper db = new DatabaseHelper(view.getContext());
+            if(!sections.get(sections.size()-1).getReversed()){
+                endPoint.setText(db.getSpot(sections.get(sections.size()-1).getSection().getIdSpEnd()).getName());
+            }
+            else{
+                endPoint.setText(db.getSpot(sections.get(sections.size()-1).getSection().getIdSpStart()).getName());
+            }
         }
         else{
-            endPoint.setText(db.getSpot(sections.get(sections.size()-1).getSection().getIdSpStart()).getName());
+            endPoint.setText("Wycieczka jest pusta");
         }
+
 
         double maxLength = 0;
         for (SectionWithDirection swd: sections) {

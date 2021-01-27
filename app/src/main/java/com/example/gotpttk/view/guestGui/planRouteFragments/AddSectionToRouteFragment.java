@@ -86,6 +86,8 @@ public class AddSectionToRouteFragment extends Fragment {
 
         DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
 
+        listview = (ListView)view.findViewById(R.id.listViewRouteSections);
+
         Button finish = (Button)view.findViewById(R.id.buttonFinish);
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +107,20 @@ public class AddSectionToRouteFragment extends Fragment {
                     if(route.size() != 0){
                         lastFragment = new LastSectionFragment(route.get(route.size()-1));
                         getFragmentManager().beginTransaction().replace(R.id.single_section_container, lastFragment).commit();
+
+                        if(!route.get(route.size()-1).getReversed()){
+                            sections = databaseHelper.getSectionsFromPoint(route.get(route.size()-1).getSection().getIdSpEnd());
+                        }
+                        else{
+                            sections = databaseHelper.getSectionsFromPoint(route.get(route.size()-1).getSection().getIdSpStart());
+                        }
+                        listview.setAdapter(new SectionWithDirectionListViewAdapter(getActivity(), sections));
+
                     }
                     else{
                         getFragmentManager().beginTransaction().remove(lastFragment).commit();
+                        sections = databaseHelper.getSectionsFromPoint(spotId);
+                        listview.setAdapter(new SectionWithDirectionListViewAdapter(getActivity(), sections));
                     }
                 }
                 else{
@@ -116,7 +129,6 @@ public class AddSectionToRouteFragment extends Fragment {
             }
         });
 
-        listview = (ListView)view.findViewById(R.id.listViewRouteSections);
         listview.setAdapter(new SectionWithDirectionListViewAdapter(getActivity(), sections));
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
