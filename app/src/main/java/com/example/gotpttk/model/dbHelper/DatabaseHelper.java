@@ -131,9 +131,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
         values.put(COLUMN_SPOT_HEIGHT, spot.getHeight());
         values.put(COLUMN_SPOT_DESC, spot.getDesc());
 
-        long update = db.update(TABLE_SPOT, values, COLUMN_SPOT_ID + " = ?",
-                new String[] { String.valueOf(spot.getIdSp())});
-        return update != -1;
+        try
+        {
+            long update = db.update(TABLE_SPOT, values, COLUMN_SPOT_ID + " = ?",
+                    new String[] { String.valueOf(spot.getIdSp())});
+            return update != 0;
+        }
+        catch (SQLiteConstraintException e)
+        {
+            return false;
+        }
     }
 
     public boolean deleteSpot(long spot_id)
@@ -141,9 +148,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         try
         {
-            db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
+            long delete = db.delete(TABLE_SPOT, COLUMN_SPOT_ID + " = ?",
                     new String[] { String.valueOf(spot_id) });
-            return true;
+            return delete != 0;
         }
         catch (SQLiteConstraintException e)
         {
@@ -302,9 +309,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
         values.put(COLUMN_SECTION_DESC, section.getDesc());
         values.put(COLUMN_SECTION_OPEN, section.getOpen());
 
-        long update = db.update(TABLE_SECTION, values, COLUMN_SECTION_ID + " = ?",
-                new String[] { String.valueOf(section.getIdSe())});
-        return update != -1;
+        try
+        {
+            long update = db.update(TABLE_SECTION, values, COLUMN_SECTION_ID + " = ?",
+                    new String[] { String.valueOf(section.getIdSe())});
+            return update != 0;
+        }
+        catch (SQLiteConstraintException e)
+        {
+            return false;
+        }
     }
 
     public boolean deleteSection(long section_id)
