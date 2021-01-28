@@ -375,23 +375,45 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
                 + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'";
 
+        String secondSelectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
+                + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'"
+                + " AND " + COLUMN_SECTION_RETURN_POINTS + " IS NOT NULL";
+
+        boolean askForReversedSections = false;
+
         if(start_point_name != null && spotStart != null)
         {
             start_point_id = spotStart.getIdSp();
             selectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + start_point_id;
+
+            secondSelectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + start_point_id;
+            askForReversedSections = true;
         }
         if(end_point_name != null && spotEnd != null)
         {
             end_point_id = spotEnd.getIdSp();
             selectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + end_point_id;
+
+            secondSelectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + end_point_name;
+            askForReversedSections = true;
         }
         if(min_length != null)
         {
             selectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
+
+            if(askForReversedSections){
+                secondSelectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
+            }
         }
         if(min_points != null)
         {
-            selectQuery += " AND (" + COLUMN_SECTION_POINTS + " >= " + min_points + " OR " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points + ")";
+            if(!askForReversedSections)
+                selectQuery += " AND (" + COLUMN_SECTION_POINTS + " >= " + min_points + " OR " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points + ")";
+            else{
+                selectQuery += " AND " + COLUMN_SECTION_POINTS + " >= " + min_points;
+
+                secondSelectQuery += " AND " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points;
+            }
         }
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -424,6 +446,30 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
                 sections.add(section);
             } while (c.moveToNext());
+        }
+
+        if(askForReversedSections){
+            c = db.rawQuery(secondSelectQuery, null);
+
+            if (c != null && c.moveToFirst() && (spotStart != null || start_point_name == null) && (spotEnd != null || end_point_name == null))
+            {
+                do
+                {
+                    Section section = new Section();
+                    section.setIdSe(c.getInt(c.getColumnIndex(COLUMN_SECTION_ID)));
+                    section.setIdSpStart(c.getInt(c.getColumnIndex(COLUMN_SECTION_END_SPOT_ID)));
+                    section.setIdSpEnd(c.getInt(c.getColumnIndex(COLUMN_SECTION_START_SPOT_ID)));
+                    section.setLength(c.getInt(c.getColumnIndex(COLUMN_SECTION_LENGTH)));
+                    section.setMountainRange(c.getString(c.getColumnIndex(COLUMN_SECTION_MOUNTAIN_RANGE)));
+                    section.setPointsTo(c.getInt(c.getColumnIndex(COLUMN_SECTION_RETURN_POINTS)));
+                    section.setPointsFrom(c.getInt(c.getColumnIndex(COLUMN_SECTION_POINTS)));
+                    section.setHeightDiff(c.getInt(c.getColumnIndex(COLUMN_SECTION_HEIGHT_DIFF)));
+                    section.setActiveSince(c.getString(c.getColumnIndex(COLUMN_SECTION_ACTIVE_SINCE)));
+                    section.setDesc(c.getString(c.getColumnIndex(COLUMN_SECTION_DESC)));
+                    section.setOpen(c.getInt(c.getColumnIndex(COLUMN_SECTION_OPEN)) == 1);
+                    sections.add(section);
+                } while (c.moveToNext());
+            }
         }
 
         if(active_since != null){
