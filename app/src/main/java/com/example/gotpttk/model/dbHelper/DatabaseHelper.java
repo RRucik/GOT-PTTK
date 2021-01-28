@@ -394,7 +394,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             end_point_id = spotEnd.getIdSp();
             selectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + end_point_id;
 
-            secondSelectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + end_point_name;
+            secondSelectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + end_point_id;
             askForReversedSections = true;
         }
         if(min_length != null)
