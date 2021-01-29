@@ -16,6 +16,7 @@ import com.example.gotpttk.model.dbHelper.DatabaseHelper;
 import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +32,17 @@ public class AddSectionFragment extends Fragment
     EditText etEditSectionPointsFrom;
     EditText etEditSectionDesc;
     EditText etEditActiveSince;
+    String startSpotName;
+    String endSpotName;
+    String length;
+    String mountainRange;
+    String pointsTo;
+    String pointsFrom;
+    String activeSince;
+    String desc;
+    Integer lengthAsInt;
+    Integer pointsToAsInt;
+    Integer pointsFromAsInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,47 +64,10 @@ public class AddSectionFragment extends Fragment
             public void onClick(View view)
             {
                 Section section;
-                String startSpotName = etEditSectionStart.getText().toString();
-                String endSpotName = etEditSectionEnd.getText().toString();
-                String length = etEditSectionLength.getText().toString();
-                String mountainRange = etEditSectionMountain.getText().toString();
-                String pointsTo = etEditSectionPointsTo.getText().toString();
-                String pointsFrom = etEditSectionPointsFrom.getText().toString();
-                String activeSince = etEditActiveSince.getText().toString();
-                String desc = etEditSectionDesc.getText().toString();
-
-                Integer lengthAsInt = null;
-                Integer pointsToAsInt = null;
-                Integer pointsFromAsInt = null;
 
                 try
                 {
-                    // Repairing strings
-                    if (startSpotName.isEmpty())
-                        startSpotName = null;
-                    if (endSpotName.isEmpty())
-                        endSpotName = null;
-                    if (mountainRange.isEmpty())
-                        mountainRange = null;
-
-                    SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
-                    if (activeSince.isEmpty())
-                        activeSince = sdformat.format((new Date(System.currentTimeMillis())));
-                    else if(sdformat.parse(activeSince) == null){
-                        Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (desc.isEmpty())
-                        desc = null;
-
-                    // Repairing integers
-                    if (!length.isEmpty())
-                        lengthAsInt = Integer.parseInt(length);
-                    if (!pointsTo.isEmpty())
-                        pointsToAsInt = Integer.parseInt(pointsTo);
-                    if (!pointsFrom.isEmpty())
-                        pointsFromAsInt = Integer.parseInt(pointsFrom);
-
+                    repairInput(view);
                     DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                     Spot spotStart = databaseHelper.getSpotWithName(startSpotName);
                     Spot spotEnd = databaseHelper.getSpotWithName(endSpotName);
@@ -128,5 +103,47 @@ public class AddSectionFragment extends Fragment
         });
 
         return view;
+    }
+
+    public void repairInput(View view) throws ParseException
+    {
+        startSpotName = etEditSectionStart.getText().toString();
+        endSpotName = etEditSectionEnd.getText().toString();
+        length = etEditSectionLength.getText().toString();
+        mountainRange = etEditSectionMountain.getText().toString();
+        pointsTo = etEditSectionPointsTo.getText().toString();
+        pointsFrom = etEditSectionPointsFrom.getText().toString();
+        activeSince = etEditActiveSince.getText().toString();
+        desc = etEditSectionDesc.getText().toString();
+
+        lengthAsInt = null;
+        pointsToAsInt = null;
+        pointsFromAsInt = null;
+
+        // Repairing strings
+        if (startSpotName.isEmpty())
+            startSpotName = null;
+        if (endSpotName.isEmpty())
+            endSpotName = null;
+        if (mountainRange.isEmpty())
+            mountainRange = null;
+
+        SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
+        if (activeSince.isEmpty())
+            activeSince = sdformat.format((new Date(System.currentTimeMillis())));
+        else if(sdformat.parse(activeSince) == null){
+            Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (desc.isEmpty())
+            desc = null;
+
+        // Repairing integers
+        if (!length.isEmpty())
+            lengthAsInt = Integer.parseInt(length);
+        if (!pointsTo.isEmpty())
+            pointsToAsInt = Integer.parseInt(pointsTo);
+        if (!pointsFrom.isEmpty())
+            pointsFromAsInt = Integer.parseInt(pointsFrom);
     }
 }

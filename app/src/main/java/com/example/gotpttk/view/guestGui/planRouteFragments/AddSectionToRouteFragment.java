@@ -21,11 +21,6 @@ import com.example.gotpttk.model.sectionModels.SectionWithDirectionListViewAdapt
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddSectionToRouteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddSectionToRouteFragment extends Fragment {
 
     List<SectionWithDirection> sections;
@@ -52,15 +47,6 @@ public class AddSectionToRouteFragment extends Fragment {
         this.route = new ArrayList<>();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddSectionToRouteFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static AddSectionToRouteFragment newInstance(String param1, String param2) {
         AddSectionToRouteFragment fragment = new AddSectionToRouteFragment();
         Bundle args = new Bundle();

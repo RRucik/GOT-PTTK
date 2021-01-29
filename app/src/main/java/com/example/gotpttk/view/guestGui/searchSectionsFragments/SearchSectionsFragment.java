@@ -19,6 +19,7 @@ import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.sectionModels.SectionListViewAdapter;
 import com.example.gotpttk.view.adminGui.sectionsFragments.EditChosenSectionFragment;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,14 @@ public class SearchSectionsFragment extends Fragment
     EditText etSectionMountain;
     EditText etSectionPoints;
     EditText etSectionActive;
+    String start;
+    String end;
+    String length;
+    String mountain;
+    String points;
+    String active;
+    Integer lengthAsInt;
+    Integer pointsAsInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,47 +60,9 @@ public class SearchSectionsFragment extends Fragment
             @Override
             public void onClick(View viewInner)
             {
-                String start = etSectionStart.getText().toString();
-                String end = etSectionEnd.getText().toString();
-                String length = etSectionLength.getText().toString();
-                String mountain = etSectionMountain.getText().toString();
-                String points = etSectionPoints.getText().toString();
-                String active = etSectionActive.getText().toString();
-                Integer lengthAsInt = null;
-                Integer pointsAsInt = null;
-
-                try{
-                    if(!length.isEmpty()){
-                        lengthAsInt = Integer.parseInt(length);
-                    }
-                    if(!points.isEmpty()){
-                        pointsAsInt = Integer.parseInt(points);
-                    }
-                    if(active.isEmpty()){
-                        active = null;
-                    }
-                    else
-                    {
-                        SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
-                        if(sdformat.parse(active) == null){
-                            Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    }
-
-                    if(start.isEmpty()){
-                        start = null;
-                    }
-                    if(end.isEmpty()){
-                        end = null;
-                    }
-//                    if(mountain.isEmpty())
-//                    {
-//                        mountain = null;
-//                    }
-
-                    DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
-
+                try
+                {
+                    repairInput(view);
                 }
                 catch(Exception e){
                     Toast.makeText(view.getContext(), "Nie można wyszukać odcinków - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
@@ -109,5 +80,46 @@ public class SearchSectionsFragment extends Fragment
             }
         });
         return view;
+    }
+
+    public void repairInput(View view) throws ParseException
+    {
+        start = etSectionStart.getText().toString();
+        end = etSectionEnd.getText().toString();
+        length = etSectionLength.getText().toString();
+        mountain = etSectionMountain.getText().toString();
+        points = etSectionPoints.getText().toString();
+        active = etSectionActive.getText().toString();
+        lengthAsInt = null;
+        pointsAsInt = null;
+
+        if(!length.isEmpty())
+        {
+            lengthAsInt = Integer.parseInt(length);
+        }
+        if(!points.isEmpty())
+        {
+            pointsAsInt = Integer.parseInt(points);
+        }
+        if(active.isEmpty())
+        {
+            active = null;
+        }
+        else
+        {
+            SimpleDateFormat sdformat = new SimpleDateFormat("DD/MM/YYYY");
+            if(sdformat.parse(active) == null){
+                Toast.makeText(view.getContext(), "Data musi być podana w formacie DD/MM/YYYY", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if(start.isEmpty())
+        {
+            start = null;
+        }
+        if(end.isEmpty())
+        {
+            end = null;
+        }
     }
 }

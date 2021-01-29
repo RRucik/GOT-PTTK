@@ -46,14 +46,6 @@ public class EditSpotFragment extends Fragment
                 Integer heightAsInt = null;
                 try
                 {
-                    // Repairing strings
-                    /*
-                    if (name.isEmpty())
-                    {
-                        name = null;
-                    }
-                    */
-
                     // Repairing integers
                     if (!height.isEmpty())
                     {

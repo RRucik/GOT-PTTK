@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 21;
+    private static final int DATABASE_VERSION = 22;
 
     // Database Name
     private static final String DATABASE_NAME = "gotPttkDb";
@@ -365,56 +365,21 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public List<Section> getFilteredSections(String start_point_name, String end_point_name, Integer min_length, String mountains_range, Integer min_points, String active_since)
     {
         List<Section> sections = new ArrayList<Section>();
-        int start_point_id;
-        int end_point_id;
-
         Spot spotStart = getSpotWithName(start_point_name);
         Spot spotEnd = getSpotWithName(end_point_name);
-
-        // Bierzemy mountain range bo tylko on może mieć wartość "" jeżeli pole wyszukiwania było puste
-        String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
-                + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'";
-
-        String secondSelectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
-                + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'"
-                + " AND " + COLUMN_SECTION_RETURN_POINTS + " IS NOT NULL";
+        String[] queries = createFilteredSectionsQueries(start_point_name, end_point_name, min_length, mountains_range, min_points, active_since);
 
         boolean askForReversedSections = false;
-
         if(start_point_name != null && spotStart != null)
         {
-            start_point_id = spotStart.getIdSp();
-            selectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + start_point_id;
-
-            secondSelectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + start_point_id;
             askForReversedSections = true;
         }
         if(end_point_name != null && spotEnd != null)
         {
-            end_point_id = spotEnd.getIdSp();
-            selectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + end_point_id;
-
-            secondSelectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + end_point_id;
             askForReversedSections = true;
         }
-        if(min_length != null)
-        {
-            selectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
-
-            if(askForReversedSections){
-                secondSelectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
-            }
-        }
-        if(min_points != null)
-        {
-            if(!askForReversedSections)
-                selectQuery += " AND (" + COLUMN_SECTION_POINTS + " >= " + min_points + " OR " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points + ")";
-            else{
-                selectQuery += " AND " + COLUMN_SECTION_POINTS + " >= " + min_points;
-
-                secondSelectQuery += " AND " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points;
-            }
-        }
+        String selectQuery = queries[0];
+        String secondSelectQuery = queries[1];
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
@@ -599,6 +564,60 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return sectionsWithDirection;
     }
 
+    public String[] createFilteredSectionsQueries(String start_point_name, String end_point_name, Integer min_length, String mountains_range, Integer min_points, String active_since)
+    {
+        int start_point_id;
+        int end_point_id;
+
+        Spot spotStart = getSpotWithName(start_point_name);
+        Spot spotEnd = getSpotWithName(end_point_name);
+
+        // Bierzemy mountain range bo tylko on może mieć wartość "" jeżeli pole wyszukiwania było puste
+        String selectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
+                + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'";
+
+        String secondSelectQuery = "SELECT  * FROM " + TABLE_SECTION + " WHERE "
+                + COLUMN_SECTION_MOUNTAIN_RANGE + " LIKE '%" + mountains_range + "%'"
+                + " AND " + COLUMN_SECTION_RETURN_POINTS + " IS NOT NULL";
+
+        boolean askForReversedSections = false;
+
+        if(start_point_name != null && spotStart != null)
+        {
+            start_point_id = spotStart.getIdSp();
+            selectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + start_point_id;
+
+            secondSelectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + start_point_id;
+            askForReversedSections = true;
+        }
+        if(end_point_name != null && spotEnd != null)
+        {
+            end_point_id = spotEnd.getIdSp();
+            selectQuery += " AND " + COLUMN_SECTION_END_SPOT_ID + " = " + end_point_id;
+
+            secondSelectQuery += " AND " + COLUMN_SECTION_START_SPOT_ID + " = " + end_point_id;
+            askForReversedSections = true;
+        }
+        if(min_length != null)
+        {
+            selectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
+
+            if(askForReversedSections){
+                secondSelectQuery += " AND " + COLUMN_SECTION_LENGTH + " >= " + min_length;
+            }
+        }
+        if(min_points != null)
+        {
+            if(!askForReversedSections)
+                selectQuery += " AND (" + COLUMN_SECTION_POINTS + " >= " + min_points + " OR " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points + ")";
+            else{
+                selectQuery += " AND " + COLUMN_SECTION_POINTS + " >= " + min_points;
+
+                secondSelectQuery += " AND " + COLUMN_SECTION_RETURN_POINTS + " >= " + min_points;
+            }
+        }
+        return new String[]{selectQuery, secondSelectQuery};
+    }
     public void closeDB()
     {
         SQLiteDatabase db = this.getReadableDatabase();

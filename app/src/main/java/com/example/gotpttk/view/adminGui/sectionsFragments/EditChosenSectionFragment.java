@@ -17,8 +17,7 @@ import com.example.gotpttk.model.dbModels.Section;
 import com.example.gotpttk.model.dbModels.Spot;
 
 
-public class
-EditChosenSectionFragment extends Fragment
+public class EditChosenSectionFragment extends Fragment
 {
     Button btnSaveSectionChanges;
     EditText etEditSectionStart;
@@ -29,6 +28,16 @@ EditChosenSectionFragment extends Fragment
     EditText etEditSectionPointsFrom;
     EditText etEditSectionDesc;
     long SectionId;
+    String startSpotName;
+    String endSpotName;
+    String length;
+    String mountainRange;
+    String pointsTo;
+    String pointsFrom;
+    String desc;
+    Integer lengthAsInt;
+    Integer pointsToAsInt;
+    Integer pointsFromAsInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,40 +74,9 @@ EditChosenSectionFragment extends Fragment
             public void onClick(View view)
             {
                 Section section;
-                String startSpotName = etEditSectionStart.getText().toString();
-                String endSpotName = etEditSectionEnd.getText().toString();
-                String length = etEditSectionLength.getText().toString();
-                String mountainRange = etEditSectionMountain.getText().toString();
-                String pointsTo = etEditSectionPointsTo.getText().toString();
-                String pointsFrom = etEditSectionPointsFrom.getText().toString();
-                String desc = etEditSectionDesc.getText().toString();
-
-                Integer lengthAsInt = null;
-                Integer pointsToAsInt = null;
-                Integer pointsFromAsInt = null;
-
                 try
                 {
-                    // Repairing strings
-                    if (startSpotName.isEmpty())
-                        startSpotName = null;
-                    if (endSpotName.isEmpty())
-                        endSpotName = null;
-                    if (mountainRange.isEmpty())
-                        mountainRange = null;
-//                    if (activeSince.isEmpty())
-//                        activeSince = null;
-                    if (desc.isEmpty())
-                        desc = null;
-
-                    // Repairing integers
-                    if (!length.isEmpty())
-                        lengthAsInt = Integer.parseInt(length);
-                    if (!pointsTo.isEmpty())
-                        pointsToAsInt = Integer.parseInt(pointsTo);
-                    if (!pointsFrom.isEmpty())
-                        pointsFromAsInt = Integer.parseInt(pointsFrom);
-
+                    repairInput();
                     DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                     Spot spotStart = databaseHelper.getSpotWithName(startSpotName);
                     Spot spotEnd = databaseHelper.getSpotWithName(endSpotName);
@@ -134,5 +112,40 @@ EditChosenSectionFragment extends Fragment
         });
 
         return view;
+    }
+
+    public void repairInput()
+    {
+        startSpotName = etEditSectionStart.getText().toString();
+        endSpotName = etEditSectionEnd.getText().toString();
+        length = etEditSectionLength.getText().toString();
+        mountainRange = etEditSectionMountain.getText().toString();
+        pointsTo = etEditSectionPointsTo.getText().toString();
+        pointsFrom = etEditSectionPointsFrom.getText().toString();
+        desc = etEditSectionDesc.getText().toString();
+
+        lengthAsInt = null;
+        pointsToAsInt = null;
+        pointsFromAsInt = null;
+
+        // Repairing strings
+        if (startSpotName.isEmpty())
+            startSpotName = null;
+        if (endSpotName.isEmpty())
+            endSpotName = null;
+        if (mountainRange.isEmpty())
+            mountainRange = null;
+//                    if (activeSince.isEmpty())
+//                        activeSince = null;
+        if (desc.isEmpty())
+            desc = null;
+
+        // Repairing integers
+        if (!length.isEmpty())
+            lengthAsInt = Integer.parseInt(length);
+        if (!pointsTo.isEmpty())
+            pointsToAsInt = Integer.parseInt(pointsTo);
+        if (!pointsFrom.isEmpty())
+            pointsFromAsInt = Integer.parseInt(pointsFrom);
     }
 }

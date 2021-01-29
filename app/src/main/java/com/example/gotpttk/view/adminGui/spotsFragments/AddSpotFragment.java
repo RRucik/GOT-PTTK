@@ -22,6 +22,10 @@ public class AddSpotFragment extends Fragment
     EditText etSpotName;
     EditText etSpotHeight;
     EditText etSpotDesc;
+    String name;
+    String height;
+    String desc;
+    Integer heightAsInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,42 +43,48 @@ public class AddSpotFragment extends Fragment
             public void onClick(View view)
             {
                 Spot spot;
-                String name = etSpotName.getText().toString();
-                String height = etSpotHeight.getText().toString();
-                String desc = etSpotDesc.getText().toString();
-                Integer heightAsInt = null;
-
-
-                    // Repairing strings
-                    if (name.isEmpty())
-                    {
-                        name = null;
-                    }
-                    if (desc.isEmpty())
-                    {
-                        desc = null;
-                    }
-                    // Repairing integers
-                    if (!height.isEmpty())
-                    {
-                        heightAsInt = Integer.parseInt(height);
-                    }
-
+                try
+                {
+                    repairInput();
                     spot = new Spot(name, heightAsInt, desc);
                     DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                     boolean success = databaseHelper.createSpot(spot);
                     if (success)
                     {
                         Toast.makeText(view.getContext(), "Punkt pomyślnie dodany", Toast.LENGTH_SHORT).show();
-                    }
-                    else
+                    } else
                     {
                         Toast.makeText(view.getContext(), "Nie można dodać punktu - niektóre wymagane pola nie wypełnione lub istenie punkt o podanej nazwie", Toast.LENGTH_SHORT).show();
                     }
-
+                } catch (Exception e)
+                {
+                    Toast.makeText(view.getContext(), "Nie można dodać punktu - dane wprowadzone w złym formacie", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
         return view;
+    }
+
+    public void repairInput()
+    {
+        name = etSpotName.getText().toString();
+        height = etSpotHeight.getText().toString();
+        desc = etSpotDesc.getText().toString();
+        heightAsInt = null;
+        // Repairing strings
+        if (name.isEmpty())
+        {
+            name = null;
+        }
+        if (desc.isEmpty())
+        {
+            desc = null;
+        }
+        // Repairing integers
+        if (!height.isEmpty())
+        {
+            heightAsInt = Integer.parseInt(height);
+        }
     }
 }

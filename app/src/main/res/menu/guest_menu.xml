@@ -4,12 +4,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_search_sections"
-            android:icon="@drawable/ic_spot"
+            android:icon="@drawable/ic_section"
             android:title="@string/search_sections"
             />
         <item
             android:id="@+id/nav_plan_travel_route"
-            android:icon="@drawable/ic_section"
+            android:icon="@drawable/ic_travel"
             android:title="@string/plan_travel_route"/>
         <item
             android:id="@+id/nav_login"

@@ -22,6 +22,10 @@ public class EditChosenSpotFragment extends Fragment
     EditText etEditSpotHeight;
     EditText etEditSpotDesc;
     long SpotId;
+    String name;
+    String height;
+    String desc;
+    Integer heightAsInt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,29 +52,10 @@ public class EditChosenSpotFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                Spot spot;
-                String name = etEditSpotName.getText().toString();
-                String height = etEditSpotHeight.getText().toString();
-                String desc = etEditSpotDesc.getText().toString();
-                Integer heightAsInt = null;
                 try
                 {
-                    // Repairing strings
-                    if (name.isEmpty())
-                    {
-                        name = null;
-                    }
-                    if (desc.isEmpty())
-                    {
-                        desc = null;
-                    }
-                    // Repairing integers
-                    if (!height.isEmpty())
-                    {
-                        heightAsInt = Integer.parseInt(height);
-                    }
-
-                    spot = new Spot((int)SpotId, name, heightAsInt, desc);
+                    repairInput();
+                    Spot spot = new Spot((int)SpotId, name, heightAsInt, desc);
                     DatabaseHelper databaseHelper = new DatabaseHelper(view.getContext());
                     boolean success = databaseHelper.updateSpot(spot);
                     if (success)
@@ -87,5 +72,27 @@ public class EditChosenSpotFragment extends Fragment
             }
         });
         return view;
+    }
+
+    public void repairInput()
+    {
+        name = etEditSpotName.getText().toString();
+        height = etEditSpotHeight.getText().toString();
+        desc = etEditSpotDesc.getText().toString();
+        heightAsInt = null;
+        // Repairing strings
+        if (name.isEmpty())
+        {
+            name = null;
+        }
+        if (desc.isEmpty())
+        {
+            desc = null;
+        }
+        // Repairing integers
+        if (!height.isEmpty())
+        {
+            heightAsInt = Integer.parseInt(height);
+        }
     }
 }
